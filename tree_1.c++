@@ -29,3 +29,10 @@ typedef struct         // 树结构
     CTBox nodes[MAX_TREE_SIZE];  // 结点数组
     int r, n;                    // 根的位置和结点数
 } CTree;
+
+/* 树的孩子兄弟表示法 */
+typedef struct CSNode
+{
+    TElementType data;
+    struct CSNode *firstchild, *rightsib;
+} CSNode, *CSTree;
