@@ -6,7 +6,7 @@ typedef struct PTNode     // 结点结构
     TElementType data;    // 结点数据
     int parent;           // 双亲在数组中的位置
 } PTNode;
-typedef struct
+typedef struct            // 树结构
 {
     PTNode nodes[MAX_TREE_SIZE]; // 结点数组
     int r, n;                    // 根的位置和结点数
