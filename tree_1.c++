@@ -36,3 +36,11 @@ typedef struct CSNode
     TElementType data;
     struct CSNode *firstchild, *rightsib;
 } CSNode, *CSTree;
+
+/* 二叉树的二叉链表结点结构定义 */
+typedef struct BiTNode  // 结点结构
+{
+    TElementType data;  // 结点数据
+    struct BiTNode *lchild, *rchild;
+} BiTNode, *BiTree;
+
