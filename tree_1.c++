@@ -1,3 +1,4 @@
+#include <cstdio>
 /* 树的双亲表示法结点结构定义 */
 # define MAX_TREE_SIZE 100
 typedef int TElementType; // 树结点的数据类型
@@ -44,3 +45,12 @@ typedef struct BiTNode  // 结点结构
     struct BiTNode *lchild, *rchild;
 } BiTNode, *BiTree;
 
+/* 二叉树的前序遍历递归算法 */
+void PreOrderTraverse(BiTree T)
+{
+    if(T == NULL)
+        return;
+    printf("%c", T->data); // 显示结点数据
+    PreOrderTraverse(T->lchild); // 先序遍历左子树
+    PreOrderTraverse(T->rchild); // 先序遍历右子树
+}
