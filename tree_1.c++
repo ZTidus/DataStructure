@@ -64,3 +64,13 @@ void InOrderTraverse(BiTree T)
     printf("%c", T->data); // 打印结点数据
     InOrderTraverse(T->rchild); // 中序遍历右子树
 }
+
+/* 二叉树的后序遍历递归算法 */
+void PostOrderTraverse(BiTree T)
+{
+    if(T == NULL)
+        return;
+    PostOrderTraverse(T->lchild); // 后序遍历左子树
+    PostOrderTraverse(T->rchild); // 后序遍历右子树
+    printf("%c", T->data); // 显示结点数据
+}
