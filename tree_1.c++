@@ -1,4 +1,9 @@
 #include <cstdio>
+#include <stdlib.h>
+#include <io.h>
+#include <string.h>
+#include <stdio.h>
+#include <math.h>
 /* 树的双亲表示法结点结构定义 */
 # define MAX_TREE_SIZE 100
 typedef int TElementType; // 树结点的数据类型
@@ -73,4 +78,25 @@ void PostOrderTraverse(BiTree T)
     PostOrderTraverse(T->lchild); // 后序遍历左子树
     PostOrderTraverse(T->rchild); // 后序遍历右子树
     printf("%c", T->data); // 显示结点数据
+}
+
+/* 二叉树的建立 */
+/* 按前序输入 */
+/* # 代表空树 */
+void CreateBiTree(BiTree *T)
+{
+    typedef char TElementType; // 树结点的数据类型
+    TElementType ch;
+    scanf("%c", &ch);
+    if(ch == '#')
+        *T = NULL;
+    else
+    {
+        *T = (BiTree)malloc(sizeof(BiTNode));
+        if(!*T)
+            exit(OVERFLOW);
+        (*T)->data = ch; // 生成根结点
+        CreateBiTree(&(*T)->lchild); // 构造左子树
+        CreateBiTree(&(*T)->rchild); // 构造右子树
+    }
 }
