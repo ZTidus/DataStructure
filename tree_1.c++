@@ -54,3 +54,13 @@ void PreOrderTraverse(BiTree T)
     PreOrderTraverse(T->lchild); // 先序遍历左子树
     PreOrderTraverse(T->rchild); // 先序遍历右子树
 }
+
+/* 二叉树的中序遍历递归算法 */
+void InOrderTraverse(BiTree T)
+{
+    if(T == NULL)
+        return;
+    InOrderTraverse(T->lchild); // 中序遍历左子树
+    printf("%c", T->data); // 打印结点数据
+    InOrderTraverse(T->rchild); // 中序遍历右子树
+}
