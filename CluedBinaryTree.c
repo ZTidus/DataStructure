@@ -14,6 +14,15 @@
 
 typedef int Status; // Status 为函数类型，值为函数结果状态代码,如OK
 typedef char TElemType; // 树结点的数据类型
+
+TElemType Nil = '#';
+
+Status visit(TElemType e)
+{
+    printf("%c", e);
+    return OK;
+}
+
 /* 二叉树的二叉线索存储结构定义 */
 typedef enum {Link, Thread} PointerTag;
 // Link == 0 时表示指向左右孩子指针
@@ -49,6 +58,29 @@ void InThreading(BiThrTree p)
     }
 }
 
+/* 中序遍历二叉树T， 并将其中序线索化， Thrt指向头结点 */
+Status InOrderThreading(BiThrTree *Thrt, BiThrTree T)
+{
+    *Thrt = (BiThrTree)malloc(sizeof(BiThrNode));
+    if(!*Thrt)
+        exit(OVERFLOW);
+    (*Thrt)->LTag = Link;
+    (*Thrt)->RTag = Link;
+    (*Thrt)->rchild = (*Thrt);  // 右指针回指
+    if(!T)  // 若二叉树为空，则左指着回指
+        (*Thrt)->lchild = *Thrt;
+    else
+    {
+        (*Thrt)->lchild = T;
+        pre = (*Thrt);
+        InThreading(T);
+        pre->rchild = *Thrt;
+        pre->RTag = Thread;
+        (*Thrt)->rchild = pre;
+    }
+    return OK;
+}
+    
 /* 中序遍历二叉线索链表 */
 Status InOrderTraverse_Thr(BiThrTree T) // T指向头结点
 {
@@ -58,14 +90,52 @@ Status InOrderTraverse_Thr(BiThrTree T) // T指向头结点
     {
         while(p->LTag == Link)  // p->LTag == 0
             p = p->lchild;
-        printf("%c", p->data);  // 显示结点数据
+        if(!visit(p->data))  
+            return ERROR;
         while(p->RTag == Thread && p->rchild != T)
         // 当p->RTag == 1且p不指向头结点
         {
             p = p->rchild;
-            printf("%c", p->data);
+            visit(p->data);
         }
         p = p->rchild;
     }
     return OK;
+}
+
+/* 按前序输入二叉线索树中结点的值，构造二叉线索树T */
+/* 0(int)/空格(char)表示空结点 */
+Status CreateBiThrTree(BiThrTree *T)
+{
+    TElemType h;
+    scanf("%c", &h);
+
+    if(h == '#')
+        *T = NULL;
+    else
+    {
+        *T = (BiThrTree)malloc(sizeof(BiThrNode));
+        if(!*T)
+            exit(OVERFLOW);
+        (*T)->data = h; // 生成根结点
+        CreateBiThrTree(&(*T)->lchild); // 递归构造左子树
+        if((*T)->lchild) // 有做孩子
+            (*T)->LTag = Link;
+        CreateBiThrTree(&(*T)->rchild); // 递归构造右子树
+        if((*T)->rchild) // 有右孩子
+            (*T)->RTag = Link;
+    }
+}
+
+int main() 
+{
+    BiThrTree H, T;
+    printf("按前序输入二叉树(eg. 'ABDH##I##EJ###CF##G##')\n");
+    CreateBiThrTree(&T);
+    InOrderThreading(&H, T);
+    printf("中序遍历二叉线索树：\n");
+        InOrderTraverse_Thr(H);
+    printf("\n");
+    
+    return 0;
 }
