@@ -88,6 +88,7 @@ void CreateBiTree(BiTree *T)
     typedef char TElementType; // 树结点的数据类型
     TElementType ch;
     scanf("%c", &ch);
+
     if(ch == '#')
         *T = NULL;
     else
