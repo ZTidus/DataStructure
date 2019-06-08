@@ -1,4 +1,19 @@
-typedef int TElemType; // 树结点的数据类型
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <io.h>
+#include <math.h>
+#include <time.h>
+
+#define OK 1
+#define ERROR 0
+#define TRUE 1
+#define FALSE 0
+
+#define MAXSIZE 100
+
+typedef int Status; // Status 为函数类型，值为函数结果状态代码,如OK
+typedef char TElemType; // 树结点的数据类型
 /* 二叉树的二叉线索存储结构定义 */
 typedef enum {Link, Thread} PointerTag;
 // Link == 0 时表示指向左右孩子指针
@@ -32,4 +47,25 @@ void InThreading(BiThrTree p)
         pre = p; // 将当前结点赋值給p，以便下一次使用
         InThreading(p->rchild); // 递归右子树线索化
     }
+}
+
+/* 中序遍历二叉线索链表 */
+Status InOrderTraverse_Thr(BiThrTree T) // T指向头结点
+{
+    BiThrTree p;
+    p = T->lchild;  // p指向跟结点
+    while(p != T)  // 当p不指向头结点时
+    {
+        while(p->LTag == Link)  // p->LTag == 0
+            p = p->lchild;
+        printf("%c", p->data);  // 显示结点数据
+        while(p->RTag == Thread && p->rchild != T)
+        // 当p->RTag == 1且p不指向头结点
+        {
+            p = p->rchild;
+            printf("%c", p->data);
+        }
+        p = p->rchild;
+    }
+    return OK;
 }
