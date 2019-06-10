@@ -15,7 +15,7 @@ typedef int Status; // 函数类型
 typedef char VertexType;  // 顶点类型
 typedef int EdgeType;  // 边上权值类型
 typedef int Boolean;
-//Boolean visited[MAX];  // 访问标志数组，初值为0，访问过后为1
+Boolean visited[MAX];  // 访问标志数组，初值为0，访问过后为1
 
 /* 图的邻接矩阵存储结构 */
 typedef struct
@@ -48,26 +48,58 @@ void CreateMGraph(MGraph *G)
 }
 
 /* 邻接矩阵的深度优先递归算法 */
-//void DFS(MGraph G, int i)
-//{
-//    int j;
-//    visited[i]  = TRUE;
-//    printf("%c ", G.vexs[i]);  // 打印顶点
-//    for(j=0; j<G.numVertexes; j++)
-//        if(G.arc[i][j] == 1 && !visited[j])
-//            DFS(G, j);  // 递归调用邻接顶点
-//}
+void DFS(MGraph G, int i)
+{
+    int j;
+    visited[i]  = TRUE;
+    printf("%c ", G.vexs[i]);  // 打印顶点
+    for(j=0; j<G.numVertexes; j++)
+        if(G.arc[i][j] == 1 && !visited[j])
+            DFS(G, j);  // 递归调用邻接顶点
+}
 
 /* 邻接矩阵的深度遍历操作 */
-//void DFSTraverse(MGraph G)
-//{
-//    int i;
-//    for(i=0; i<G.numVertexes; i++)
-//        visited[i] = FALSE;  // 初始所有顶点状态为未访问状态
-//    for(i=0; i<G.numVertexes; i++)
-//        if(!visited[i])
-//            DFS(G, i);
-//}
+void DFSTraverse(MGraph G)
+{
+    int i;
+    for(i=0; i<G.numVertexes; i++)
+        visited[i] = FALSE;  // 初始所有顶点状态为未访问状态
+    for(i=0; i<G.numVertexes; i++)
+        if(!visited[i])
+            DFS(G, i);
+}
+
+/* 邻接矩阵的广度遍历算法 */
+void BFSTraverse(MGraph M)
+{
+	int i, j;
+	Queue Q;
+	for(i=0; i<G.numVertexes; i++)
+	    visited[i] = FALSE;
+	InitQueue(&Q);  // 初始化辅助队列
+	for(i=0; i<G.numVertexes; i++)  // 循环每一个顶点
+	{
+		if(!visited[i])
+		{
+			visited[i] = TRUE;
+			printf("%c ", G.vexs[i]);  // 打印顶点
+			EnQueue(&Q, i);            // 将此顶点入队列
+			while(!QueueEmpty(Q))      // 若当前队列不为空
+			{
+				DeQueue(&Q, &i);       // 将队中元素出队列
+				for(j=0; j<G.numVertexes; j++)
+				{
+					if(G.arc[i][j] == 1 && !visited[j])
+					{
+						visited[j] = TRUE;
+						printf("%c ", G.vex[j]);    // 打印顶点
+						EnQueue(&Q, j); 
+					}
+				} 
+			} 
+		}
+	} 
+}
 
 int main(void)
 {
