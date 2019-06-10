@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+
 typedef char VertexType;  // 顶点类型
 typedef int EdgeType;  // 边上权值类型
-#define MAXVEX 100;  // 最大顶点数
+#define MAXVEX 100  // 最大顶点数
+typedef int Boolean;
+Boolean visited[MAX];  // 访问标志数组，初值为0，访问过后为1
 
 // 边表结点
 typedef struct EdgeNode
@@ -55,4 +59,30 @@ void CreateALGraph(GraphAdjList *G)
         e->next = G->adjList[j].firstedge;
         G->adjList[j].firstedge = e;
     }
+}
+
+/* 邻接表的深度优先递归算法 */
+void DFS(GraphAdjList GL, int i)
+{
+    EdgeNode *p;
+    visited[i] = TRUE;
+    printf("%c ", GL->adjList[i].data);  // 打印顶点
+    p = GL->adjList[i].firstedge;
+    while(p)
+    {
+        if(!visited[p->adjvex])
+            DFS(GL, p->adjvex);  // 对邻接顶点递归调用
+        p = p->next;
+    }
+}
+
+/* 邻接表的深度遍历操作 */
+void DFSTraverse(GraphAdjList GL)
+{
+    int i;
+    for(i=0; i<GL.numVertexes; i++)
+        visited[i] = FALSE;  // 初始化所有顶点状态为未访问
+    for(i=0; i<GL.numVertexes; i++)
+        if(!visited[i])
+            DFS(GL, i);
 }
