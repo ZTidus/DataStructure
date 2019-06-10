@@ -15,8 +15,8 @@ typedef int Status;  // 函数类型
 typedef char VertexType;  // 顶点类型
 typedef int EdgeType;  // 边上权值类型
 
-//typedef int Boolean;
-//Boolean visited[MAX];  // 访问标志数组，初值为0，访问过后为1
+typedef int Boolean;
+Boolean visited[MAX];  // 访问标志数组，初值为0，访问过后为1
 
 // 边表结点
 typedef struct EdgeNode
@@ -72,30 +72,65 @@ void CreateALGraph(GraphAdjList *G)
 }
 
 /* 邻接表的深度优先递归算法 */
-//void DFS(GraphAdjList GL, int i)
-//{
-//    EdgeNode *p;
-//    visited[i] = TRUE;
-//    printf("%c ", GL->adjList[i].data);  // 打印顶点
-//    p = GL->adjList[i].firstedge;
-//    while(p)
-//    {
-//        if(!visited[p->adjvex])
-//            DFS(GL, p->adjvex);  // 对邻接顶点递归调用
-//        p = p->next;
-//    }
-//}
+void DFS(GraphAdjList GL, int i)
+{
+    EdgeNode *p;
+    visited[i] = TRUE;
+    printf("%c ", GL->adjList[i].data);  // 打印顶点
+    p = GL->adjList[i].firstedge;
+    while(p)
+    {
+        if(!visited[p->adjvex])
+            DFS(GL, p->adjvex);  // 对邻接顶点递归调用
+        p = p->next;
+    }
+}
 
 /* 邻接表的深度遍历操作 */
-//void DFSTraverse(GraphAdjList GL)
-//{
-//    int i;
-//    for(i=0; i<GL.numVertexes; i++)
-//        visited[i] = FALSE;  // 初始化所有顶点状态为未访问
-//    for(i=0; i<GL.numVertexes; i++)
-//        if(!visited[i])
-//            DFS(GL, i);
-//}
+void DFSTraverse(GraphAdjList GL)
+{
+    int i;
+    for(i=0; i<GL.numVertexes; i++)
+        visited[i] = FALSE;  // 初始化所有顶点状态为未访问
+    for(i=0; i<GL.numVertexes; i++)
+        if(!visited[i])
+            DFS(GL, i);
+}
+
+/* 邻接表的广度优先遍历 */
+void BFSTraverse(GraphAdjList GL) 
+{
+	int i;
+	EdgeNode *p;
+	Queue Q;
+	for(i=0; i<GL->numVertexes; i++)
+	    visited[i] = FALSE;    // 初始化所有顶点状态为未访问
+	InitQueue(&Q);
+	for(i=0; i<GL->numVertexes; i++)
+	{
+		if(!visited[i])
+		{
+			visited[i] = TRUE;
+			printf("%c ", GL->adjList[i].data);  // 打印顶点
+			EnQueue(&Q, i);
+			while(!QueueEmpty(Q))
+			{
+				DeQueue(&Q, &i);
+				p = GL->adjList[i].firstedge;  // 找到当前顶点边表链表头指针
+				while(p)
+				{
+					if(!visited[p->adjvex])
+					{
+						visited[p->adjvex] = TRUE;
+						printf("%c ", GL->adjList[p->adjvex].data);
+						EnQueue(&Q, p->adjvex);    // 将顶点入队列 
+					}
+					p = p->next;
+				 } 
+			 } 
+		}
+	 } 
+}
 
 int main(void) 
 {
