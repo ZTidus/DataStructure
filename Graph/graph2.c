@@ -1,55 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <io.h>
+#include <time.h>
 #include <math.h>
 
-typedef char VertexType;  // é¡¶ç‚¹ç±»å‹
-typedef int EdgeType;  // è¾¹ä¸Šæƒå€¼ç±»å‹
-#define MAXVEX 100  // æœ€å¤§é¡¶ç‚¹æ•°
-typedef int Boolean;
-Boolean visited[MAX];  // è®¿é—®æ ‡å¿—æ•°ç»„ï¼Œåˆå€¼ä¸º0ï¼Œè®¿é—®è¿‡åä¸º1
+#define OK 1
+#define ERROR 0
+#define TRUE 1
+#define FALSE 0
+#define MAXVEX 100  // ×î´ó¶¥µãÊı
+#define INFINITY 65535  // ´ú±íÎŞÇî´ó
 
-// è¾¹è¡¨ç»“ç‚¹
+typedef int Status;  // º¯ÊıÀàĞÍ 
+typedef char VertexType;  // ¶¥µãÀàĞÍ
+typedef int EdgeType;  // ±ßÉÏÈ¨ÖµÀàĞÍ
+
+//typedef int Boolean;
+//Boolean visited[MAX];  // ·ÃÎÊ±êÖ¾Êı×é£¬³õÖµÎª0£¬·ÃÎÊ¹ıºóÎª1
+
+// ±ß±í½áµã
 typedef struct EdgeNode
 {
-    int adjvex;  // é‚»æ¥ç‚¹åŸŸï¼Œå­˜å‚¨è¯¥é¡¶ç‚¹å¯¹åº”ä¸‹æ ‡
-    EdgeType weight;  // å­˜å‚¨æƒå€¼
-    struct EdgeType *next;  // é“¾åŸŸï¼ŒæŒ‡å‘ä¸‹ä¸€ä¸ªé‚»æ¥ç‚¹
+    int adjvex;  // ÁÚ½ÓµãÓò£¬´æ´¢¸Ã¶¥µã¶ÔÓ¦ÏÂ±ê
+    EdgeType weight;  // ´æ´¢È¨Öµ
+    struct EdgeType *next;  // Á´Óò£¬Ö¸ÏòÏÂÒ»¸öÁÚ½Óµã
 } EdgeNode;
 
-// é¡¶ç‚¹è¡¨ç»“ç‚¹
+// ¶¥µã±í½áµã
 typedef struct VertexNode
 {
-    VertexType data;  // é¡¶ç‚¹åŸŸï¼Œå­˜å‚¨é¡¶ç‚¹ä¿¡æ¯
-    EdgeNode *firstedge;  // è¾¹è¡¨å¤´æŒ‡é’ˆ
+    VertexType data;  // ¶¥µãÓò£¬´æ´¢¶¥µãĞÅÏ¢
+    EdgeNode *firstedge;  // ±ß±íÍ·Ö¸Õë
 } VertexNode, AdjList[MAXVEX];
 
 typedef struct 
 {
     AdjList adjList;
-    int numVertexes, numEdges;  // å›¾ä¸­å½“å‰é¡¶ç‚¹æ•°å’Œè¾¹æ•°
+    int numVertexes, numEdges;  // Í¼ÖĞµ±Ç°¶¥µãÊıºÍ±ßÊı
 } GraphAdjList;
 
-/* å»ºç«‹å›¾çš„é‚»æ¥è¡¨ç»“æ„ */
+/* ½¨Á¢Í¼µÄÁÚ½Ó±í½á¹¹ */
 void CreateALGraph(GraphAdjList *G)
 {
     int i, j, k;
     EdgeNode *e;
-    printf("è¾“å…¥é¡¶ç‚¹æ•°å’Œè¾¹æ•°:\n");
+    printf("ÊäÈë¶¥µãÊıºÍ±ßÊı:\n");
     scanf("%d, %d", &G->numVertexes, &G->numEdges);
-    // å»ºç«‹é¡¶ç‚¹è¡¨
+    // ½¨Á¢¶¥µã±í
     for(i=0; i<G->numVertexes; i++)
     {
-        scanf(&G->adjList[i].data);  // è¾“å…¥é¡¶ç‚¹ä¿¡æ¯
-        G->adjList[i].firstedge = NULL;  // å°†è¾¹è¡¨ç½®ä¸ºç©º
+        scanf(&G->adjList[i].data);  // ÊäÈë¶¥µãĞÅÏ¢
+        G->adjList[i].firstedge = NULL;  // ½«±ß±íÖÃÎª¿Õ
     }
 
-    // å»ºç«‹è¾¹è¡¨
+    // ½¨Á¢±ß±í
     for(k=0; k<G->numEdges; k++)
     {
-        printf("è¾“å…¥è¾¹(vi, vj)ä¸Šçš„é¡¶ç‚¹åºå·:\n");
+        printf("ÊäÈë±ß(vi, vj)ÉÏµÄ¶¥µãĞòºÅ:\n");
         scanf("%d, %d", &i, &j);
-        e = (EdgeNode *)malloc(sizeof(EdgeNode)); // ç”³è¯·ç©ºé—´ç”Ÿæˆè¾¹è¡¨ç»“ç‚¹
-        // å¤´æ’æ³•
+        e = (EdgeNode *)malloc(sizeof(EdgeNode)); // ÉêÇë¿Õ¼äÉú³É±ß±í½áµã
+        // Í·²å·¨
         e->adjvex = j;
         e->next = G->adjList[i].firstedge;
         G->adjList[i].firstedge = e;
@@ -61,28 +71,35 @@ void CreateALGraph(GraphAdjList *G)
     }
 }
 
-/* é‚»æ¥è¡¨çš„æ·±åº¦ä¼˜å…ˆé€’å½’ç®—æ³• */
-void DFS(GraphAdjList GL, int i)
-{
-    EdgeNode *p;
-    visited[i] = TRUE;
-    printf("%c ", GL->adjList[i].data);  // æ‰“å°é¡¶ç‚¹
-    p = GL->adjList[i].firstedge;
-    while(p)
-    {
-        if(!visited[p->adjvex])
-            DFS(GL, p->adjvex);  // å¯¹é‚»æ¥é¡¶ç‚¹é€’å½’è°ƒç”¨
-        p = p->next;
-    }
-}
+/* ÁÚ½Ó±íµÄÉî¶ÈÓÅÏÈµİ¹éËã·¨ */
+//void DFS(GraphAdjList GL, int i)
+//{
+//    EdgeNode *p;
+//    visited[i] = TRUE;
+//    printf("%c ", GL->adjList[i].data);  // ´òÓ¡¶¥µã
+//    p = GL->adjList[i].firstedge;
+//    while(p)
+//    {
+//        if(!visited[p->adjvex])
+//            DFS(GL, p->adjvex);  // ¶ÔÁÚ½Ó¶¥µãµİ¹éµ÷ÓÃ
+//        p = p->next;
+//    }
+//}
 
-/* é‚»æ¥è¡¨çš„æ·±åº¦éå†æ“ä½œ */
-void DFSTraverse(GraphAdjList GL)
+/* ÁÚ½Ó±íµÄÉî¶È±éÀú²Ù×÷ */
+//void DFSTraverse(GraphAdjList GL)
+//{
+//    int i;
+//    for(i=0; i<GL.numVertexes; i++)
+//        visited[i] = FALSE;  // ³õÊ¼»¯ËùÓĞ¶¥µã×´Ì¬ÎªÎ´·ÃÎÊ
+//    for(i=0; i<GL.numVertexes; i++)
+//        if(!visited[i])
+//            DFS(GL, i);
+//}
+
+int main(void) 
 {
-    int i;
-    for(i=0; i<GL.numVertexes; i++)
-        visited[i] = FALSE;  // åˆå§‹åŒ–æ‰€æœ‰é¡¶ç‚¹çŠ¶æ€ä¸ºæœªè®¿é—®
-    for(i=0; i<GL.numVertexes; i++)
-        if(!visited[i])
-            DFS(GL, i);
+	GraphAdjList G;
+	CreateALGraph(&G);
+	return 0;
 }
