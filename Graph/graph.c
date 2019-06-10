@@ -1,57 +1,77 @@
-/* å›¾çš„é‚»æ¥çŸ©é˜µå­˜å‚¨ç»“æ„ */
-typedef char VertexType;  // é¡¶ç‚¹ç±»å‹
-typedef int EdgeType;  // è¾¹ä¸Šæƒå€¼ç±»å‹
+#include <stdio.h>
+#include <stdlib.h>
+#include <io.h>
+#include <math.h>
+#include <time.h>
+
+#define OK 1
+#define ERROR 0
+#define TRUE 1
+#define FALSE 0
+#define MAXVEX 100  // ×î´ó¶¥µãÊı
+#define INFINITY 65535  // ´ú±íÎŞÇî´ó
+
+typedef int Status; // º¯ÊıÀàĞÍ 
+typedef char VertexType;  // ¶¥µãÀàĞÍ
+typedef int EdgeType;  // ±ßÉÏÈ¨ÖµÀàĞÍ
 typedef int Boolean;
-Boolean visited[MAX];  // è®¿é—®æ ‡å¿—æ•°ç»„ï¼Œåˆå€¼ä¸º0ï¼Œè®¿é—®è¿‡åä¸º1
-#define INFINITY 65535;  // ä»£è¡¨æ— ç©·å¤§
-#define MAXVEX 100;  // æœ€å¤§é¡¶ç‚¹æ•°
+//Boolean visited[MAX];  // ·ÃÎÊ±êÖ¾Êı×é£¬³õÖµÎª0£¬·ÃÎÊ¹ıºóÎª1
+
+/* Í¼µÄÁÚ½Ó¾ØÕó´æ´¢½á¹¹ */
 typedef struct
 {
-    VertexType vexs[MAXVEX];  // é¡¶ç‚¹è¡¨
-    EdgeType arc[MAXVEX][MAXVEX];  // é‚»æ¥çŸ©é˜µ
-    int numVertexes, numEdges;  // å›¾ä¸­å½“å‰é¡¶ç‚¹æ•°ä¸è¾¹æ•°
+    VertexType vexs[MAXVEX];  // ¶¥µã±í
+    EdgeType arc[MAXVEX][MAXVEX];  // ÁÚ½Ó¾ØÕó
+    int numVertexes, numEdges;  // Í¼ÖĞµ±Ç°¶¥µãÊıÓë±ßÊı
 } MGraph;
 
-/* å»ºç«‹æ— å‘ç½‘å›¾çš„é‚»æ¥çŸ©é˜µè¡¨ç¤º */
+/* ½¨Á¢ÎŞÏòÍøÍ¼µÄÁÚ½Ó¾ØÕó±íÊ¾ */
 void CreateMGraph(MGraph *G)
 {
     int i, j, k, w;
-    printf("è¾“å…¥é¡¶ç‚¹æ•°å’Œè¾¹æ•°:\n");
+    printf("ÊäÈë¶¥µãÊıºÍ±ßÊı:\n");
     scanf("%d, %d", &G->numVertexes, &G->numEdges);
-    // é¡¶ç‚¹è¡¨
-    for(i=0; i<numVertexes; i++)
-        scanf("%d", &G->vexs[i]);
-    // é‚»æ¥çŸ©é˜µåˆå§‹åŒ–
+    // ¶¥µã±í
+    for(i=0; i<G->numVertexes; i++)
+        scanf(&G->vexs[i]);
+    // ÁÚ½Ó¾ØÕó³õÊ¼»¯
     for(i=0; i<G->numVertexes; i++)
         for(j=0; j<G->numVertexes; j++)
             G->arc[i][j] = INFINITY;
     for(k=0; k<G->numEdges; k++)
     {
-        printf("è¾“å…¥è¾¹(vi, vj)çš„ä¸‹æ ‡i, jå’Œæƒå€¼w:\n");
+        printf("ÊäÈë±ß(vi, vj)µÄÏÂ±êi, jºÍÈ¨Öµw:\n");
         scanf("%d, %d, %d", &i, &j, &w);
         G->arc[i][j] = w;
-        G->arc[i][j] = G->arc[j][i];
+        G->arc[j][i] = G->arc[i][j];
     }
 }
 
-/* é‚»æ¥çŸ©é˜µçš„æ·±åº¦ä¼˜å…ˆé€’å½’ç®—æ³• */
-void DFS(MGraph G, int i)
-{
-    int j;
-    visited[i]  = TRUE;
-    printf("%c ", G.vexs[i]);  // æ‰“å°é¡¶ç‚¹
-    for(j=0; j<G.numVertexes; j++)
-        if(G.arc[i][j] == 1 && !visited[j])
-            DFS(G, j);  // é€’å½’è°ƒç”¨é‚»æ¥é¡¶ç‚¹
-}
+/* ÁÚ½Ó¾ØÕóµÄÉî¶ÈÓÅÏÈµİ¹éËã·¨ */
+//void DFS(MGraph G, int i)
+//{
+//    int j;
+//    visited[i]  = TRUE;
+//    printf("%c ", G.vexs[i]);  // ´òÓ¡¶¥µã
+//    for(j=0; j<G.numVertexes; j++)
+//        if(G.arc[i][j] == 1 && !visited[j])
+//            DFS(G, j);  // µİ¹éµ÷ÓÃÁÚ½Ó¶¥µã
+//}
 
-/* é‚»æ¥çŸ©é˜µçš„æ·±åº¦éå†æ“ä½œ */
-void DFSTraverse(MGraph G)
+/* ÁÚ½Ó¾ØÕóµÄÉî¶È±éÀú²Ù×÷ */
+//void DFSTraverse(MGraph G)
+//{
+//    int i;
+//    for(i=0; i<G.numVertexes; i++)
+//        visited[i] = FALSE;  // ³õÊ¼ËùÓĞ¶¥µã×´Ì¬ÎªÎ´·ÃÎÊ×´Ì¬
+//    for(i=0; i<G.numVertexes; i++)
+//        if(!visited[i])
+//            DFS(G, i);
+//}
+
+int main(void)
 {
-    int i;
-    for(i=0; i<G.numVertexes; i++)
-        visited[i] = FALSE;  // åˆå§‹æ‰€æœ‰é¡¶ç‚¹çŠ¶æ€ä¸ºæœªè®¿é—®çŠ¶æ€
-    for(i=0; i<G.numVertexes; i++)
-        if(!visited[i])
-            DFS(G, i);
-}
+	MGraph G;
+	CreateMGraph(&G);
+	return 0;
+} 
