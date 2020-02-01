@@ -27,7 +27,7 @@ List PtrL;
 // 线性表长度：L.last+1, PtrL->last+1
 ```
 
-### 3. 主要操作的实现
+**主要操作的实现**
 
 - 初始化
 
@@ -103,3 +103,68 @@ void Delete(int i, List PtrL){
 ```
 
 平均移动次数`(n-1)/2`，`O(n)`。
+
+### 3. 线性表的链式存储
+
+> 不要求逻辑上相邻的两个元素物理上也相邻。
+>
+> - 插入、删除不需移动元素
+
+![1580545033013](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1580545033013.png)
+
+```c++
+typedef struct LNode *List;
+struct LNode{
+    ElementType Data;  // 数据域
+    List Next;  // 指针域
+};
+struct LNode L;
+List PtrL;
+```
+
+**主要操作**
+
+- 求表长
+
+```c++
+// 遍历整个链表
+int Length(List PtrL){
+    List p = PtrL;  // 设指针p指向链表的头
+    int j = 0;
+    while(p){
+        p = p->Next;
+        j++;
+    }
+    return j;
+}
+```
+
+`O(n)`
+
+- 查找
+
+```c++
+// (1)按序号查找
+List FindKth(int K, List PtrL){
+    List p = PtrL;
+    int i = 1; // 一开始p指向第一个元素 
+    while(p != NULL && i < K){ // 退出条件：p == NULL or i == k
+        p = p->Next;
+        i++;
+    }
+    if(i == K) return p;
+    else return NULL;
+}
+```
+
+```c++
+// (2)按值查找
+List Find(ElementType X, List PtrL){
+    List p = PtrL;
+    while(p != NULL && p->Data != X)
+        p = p->Next;
+    return p;
+}
+```
+
+`O(n)`
