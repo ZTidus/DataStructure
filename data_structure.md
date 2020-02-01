@@ -110,7 +110,7 @@ void Delete(int i, List PtrL){
 >
 > - 插入、删除不需移动元素
 
-![1580545033013](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1580545033013.png)
+![ds_1](images/ds_1.png)
 
 ```c++
 typedef struct LNode *List;
@@ -179,7 +179,7 @@ List Find(ElementType X, List PtrL){
 
   （3）修改指针，插入结点
 
-  ![1580547584657](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1580547584657.png)
+  ![ds_2](images/ds_2.png)
 
 ```c++
 List Insert(ElementType X, int i, List PtrL){
@@ -216,7 +216,7 @@ List Insert(ElementType X, int i, List PtrL){
 
   （4）*释放s所指结点空间*
 
-  ![1580548572671](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1580548572671.png)
+  ![ds_3](images/ds_3.png)
 
   
 
