@@ -168,3 +168,86 @@ List Find(ElementType X, List PtrL){
 ```
 
 `O(n)`
+
+- 插入
+
+  > 在第$i-1（1\leq i\leq n+1)$ 个结点后插入值为X的新结点
+
+  （1）先构造一个新结点，用s指向；
+
+  （2）找到链表第$i-1$个结点，用p指向；
+
+  （3）修改指针，插入结点
+
+  ![1580547584657](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1580547584657.png)
+
+```c++
+List Insert(ElementType X, int i, List PtrL){
+    List p, s;
+    if(i == 1){  // 插在链表头上，做特殊处理
+        s = (List)malloc(sizeof(struct LNode)); // 申请结点
+        s->Data = X;
+        s->Next = PtrL;
+        return s;  // 返回新表头指针
+    }
+    p = FindKth(i-1, PtrL);  // 查找第i-1个结点
+    if(p == NULL){           // 若不存在，则不能插入
+        printf("参数i错");
+        return NULL;
+    } else {                 // 存在，申请新结点
+        s = (List)malloc(sizeof(struct LNode));
+        s->Data = X;
+        s-Next = p->Next;
+        p->Next = s;
+        return PtrL;
+    }
+}
+```
+
+- 删除
+
+  > 删除链表第$i(1\leq i \leq n)$个位置上的结点
+
+  （1）先找到链表第$i-1​$个结点，用p指向；
+
+  （2）再用指针s指向被删除结点
+
+  （3）修改指针，删除s所指结点
+
+  （4）*释放s所指结点空间*
+
+  ![1580548572671](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1580548572671.png)
+
+  
+
+```c++
+List Delete(int i, List PtrL){
+    List p, s;
+    if(i == 1){  // 删除表第一个结点
+        s = PtrL;  // s指向第一个结点
+        if(PtrL != NULL) 
+            PtrL = PtrL->Next;
+        else  // 删除时链表为空
+            return NULL;
+        free(s);
+        return PtrL;
+    }
+    p = FindKth(i-1, PtrL);  // 找到被删除结点的前一个结点
+    if(P == NULL){
+        printf("第%d个结点不存在", i-1);
+        return NULL;
+    }
+    else if(p->Next == NULL){
+        printf("第%d个结点不存在", i);
+        return NULL;
+    }
+    else{
+        s = p->Next;
+        p->Next = s->Next;
+        free(s);
+        return PtrL;
+    }
+}
+```
+
+`n/2`
