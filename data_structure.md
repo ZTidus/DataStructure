@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # DATA STRUCTURE
 
 ## 线性结构
@@ -10,7 +14,7 @@
 - `空表`：线性表中无元素
 - `表头`/`表尾`
 
-### 2. 线性表的顺序存储
+#### （1）线性表的顺序存储
 
 利用数组的`连续存储空间顺序存放`线性表的各元素。
 
@@ -104,7 +108,7 @@ void Delete(int i, List PtrL){
 
 平均移动次数`(n-1)/2`，`O(n)`。
 
-### 3. 线性表的链式存储
+#### （2）线性表的链式存储
 
 > 不要求逻辑上相邻的两个元素物理上也相邻。
 >
@@ -251,3 +255,36 @@ List Delete(int i, List PtrL){
 ```
 
 `n/2`
+
+#### （3）广义表和多重链表
+
+`广义表`(Generalized List)
+
+- 线性表的推广
+- 对于广义表而言，n个元素都是基本的单元素
+
+```c++
+typedef struct GNode *GList;
+struct GNode{
+    int Tag;  // 标志域：0表示结点为单元素，1表示结点是广义表
+    union{  // Data与subList共用内存
+        ElementType Data;
+        GList SubList;
+    }URegion;
+    GList Next; 
+}
+```
+
+![1580629868338](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1580629868338.png)
+
+`多重链表`：链表中的节点可能同时隶属于多个链
+
+- 多重链表中结点的**指针域会有多个**
+- 但包含两个指针域的链表并不一定是多重链表（双向链表不是多重链表）
+
+应用：存储矩阵、十字链表
+
+
+
+### 2. 堆栈
+
