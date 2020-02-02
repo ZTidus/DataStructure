@@ -275,7 +275,7 @@ struct GNode{
 };
 ```
 
-![1580629868338](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1580629868338.png)
+![ds_4](images/ds_4.png)
 
 `多重链表`：链表中的节点可能同时隶属于多个链
 
@@ -330,7 +330,7 @@ void Push(Stack PtrS, ElementType item){
 }
 ```
 
-![1580632885876](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1580632885876.png)
+![stack_2](images/stack_2.png)
 
 - 出栈
 
@@ -347,6 +347,8 @@ ElementType Pop(Stack PtrS){
 eg. 使用一个数组实现两个堆栈，最大利用数组空间。
 
 >  从两头开始，相遇即满。
+
+![stack_1](images/stack_1.png)
 
 ```c++
 #define MaxSize <存储数据元素的最大个数>
@@ -373,6 +375,26 @@ void Push(struct DStack *PtrS, ElementType item, int Tag){
         PtrS->Data[++(PtrS->Top1)] = item;
     else          // 对第二个栈操作
         PtrS->Data[--(PtrS->Top2)] = item;
+}
+```
+
+> Pop
+
+```c++
+ElementType Pop(struct DStack *PtrS, int Tag){
+    if(Tag == 1){
+        if(PtrS->Top1 == -1){
+            printf("栈1空");
+            retutn NULL;
+        } else 
+            return PtrS->Data[(PtrS->Top1)--];
+    } else {
+        if(PtrS->Top2 == MaxSize){
+            printf("栈2空");
+            return NULL;
+        } else
+            return PtrS->Data[(PtrS->Top2)++];
+    }
 }
 ```
 
