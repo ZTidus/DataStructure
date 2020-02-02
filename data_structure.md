@@ -272,7 +272,7 @@ struct GNode{
         GList SubList;
     }URegion;
     GList Next; 
-}
+};
 ```
 
 ![1580629868338](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1580629868338.png)
@@ -302,3 +302,77 @@ eg. 计算机求值，符号优先级
 `堆栈(stack)`：只在一端（栈顶）做插入、删除的线性表
 
 - 后入先出(LIFO)
+
+#### （2）栈的顺序存储实现
+
+由一个`一维数组`和一个记录`栈顶`元素位置的变量组成。
+
+```c++
+#define MaxSize <存储数据元素的最大个数>
+typedef struct SNode *Stack;
+struct SNode{
+    ElementType Data[MaxSize];
+    int Top;
+};
+```
+
+- 入栈
+
+```c++
+void Push(Stack PtrS, ElementType item){
+    if(PtrS->Top == MaxSize-1){
+        printf("栈满");
+        return;
+    } else {
+        PtrS->Data[++(PtrS->Top)] = item;
+        return;
+    }
+}
+```
+
+![1580632885876](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1580632885876.png)
+
+- 出栈
+
+```c++
+ElementType Pop(Stack PtrS){
+    if(PtrS->Top == -1){
+        printf("栈空");
+        return ERROR;  // 预先定义标志值
+    } else
+        return (PtrS->Data[(PtrS->Top)--]);	
+}
+```
+
+eg. 使用一个数组实现两个堆栈，最大利用数组空间。
+
+>  从两头开始，相遇即满。
+
+```c++
+#define MaxSize <存储数据元素的最大个数>
+struct DStack{
+    ElementType Data[MaxSize];
+    int Top1;
+    int Top2;
+}S;
+// S.Top1 == -1;  栈1空
+// S.Top2 == MaxSize;  栈2空
+```
+
+> Push
+
+```c++
+void Push(struct DStack *PtrS, ElementType item, int Tag){
+    // Tag: 区分两个栈的标志。取值为1或2。
+    if(PtrS->Top2 - PtrS->Top1 == 1){
+        // 栈满
+        printf("栈满");
+        return;
+    } 
+    if(Tag == 1)  // 对第一个栈操作
+        PtrS->Data[++(PtrS->Top1)] = item;
+    else          // 对第二个栈操作
+        PtrS->Data[--(PtrS->Top2)] = item;
+}
+```
+
