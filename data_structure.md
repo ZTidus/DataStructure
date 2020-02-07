@@ -398,3 +398,52 @@ ElementType Pop(struct DStack *PtrS, int Tag){
 }
 ```
 
+#### （4）堆栈的链式存储实现
+
+> 实际上是`单链表`，称为`链栈`。
+
+
+
+**栈顶指针Top一定是在链表的头上！！！**
+
+```c++
+typedef struct SNode *Stack;
+struct SNode{
+    ElementType Data;
+    struct SNode *Next;
+}
+```
+
+```c++
+Stack CreateStack(){
+    // 构建一个堆栈的头结点，并返回指针。
+    Stack S;
+    S = (Stack)malloc(sizeof(struct SNode));
+    S->Next = NULL;
+    return S;
+}
+
+```
+
+![1581062357517](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1581062357517.png)
+
+```c++
+// 判别堆栈是否为空
+int IsEmpty(Stack S){
+    // 为空：返回1；否则返回0
+    return (S->Next == NULL);
+}
+```
+
+> Push
+
+```c++
+void Push(ElementType item, Stack S){
+    struct SNode *TmpCell;
+    TmpCell = (struct SNode *)malloc(sizeof(struct SNode));
+    TmpCell->Element = item;
+    TmpCell->Next = S->Next;
+    S->Next = TmpCell;
+}
+```
+
