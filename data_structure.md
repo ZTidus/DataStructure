@@ -447,3 +447,25 @@ void Push(ElementType item, Stack S){
 }
 ```
 
+![stack_3](images/stack_3.png)
+
+> Pop
+
+```c++
+// 删除并返回栈顶元素
+ElementType Pop(Stack S){
+    struct SNode *FirstCell;
+    if(IsEmpty(S)){
+        printf("栈空");
+        return NULL;
+    } else {
+        FirstCell = S->Next;
+        S->Next = FirstCell->Next;
+        TopElem = FirstCell->Element;
+        free(FirstCell);
+        return TopElem;
+    }
+}
+```
+
+![stack_4](images/stack_4.png)
