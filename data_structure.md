@@ -425,7 +425,7 @@ Stack CreateStack(){
 
 ```
 
-![1581062357517](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1581062357517.png)
+![stack_5](images/stack_5.png)
 
 ```c++
 // 判别堆栈是否为空
