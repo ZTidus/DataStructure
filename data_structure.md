@@ -470,6 +470,8 @@ ElementType Pop(Stack S){
 
 ![stack_4](images/stack_4.png)
 
+
+
 #### (5)堆栈应用：表达式求值
 
 > 中缀表达式求值
@@ -497,4 +499,35 @@ ElementType Pop(Stack S){
    比较新的栈顶运算符，直到该运算符大于栈顶运算符优先级为止，然后压入堆栈。
 
 各对象处理完毕，将堆栈中存留的运算符逐一输出。
+
+
+
+### 3. 队列
+
+#### （1）队列及顺序存储实现
+
+> 队列：具有一定操作约束的线性表
+>
+> - 只能在一端插入(rear+1)，在另一端删除(front+1)。
+> - FIFO 
+
+- 队列顺序存储实现
+
+  - 一维数组
+  - 记录队列头的元素位置变量`front`
+  - 记录队列尾元素位置变量`rear`
+
+  ```c++
+  #define MaxSize <存储数据元素的最大个数>
+  struct QNode{
+      ElementType Data[MaxSize];
+      int rear;
+      int front;
+  };
+  typedef struct QNode *Queue;
+  ```
+
+- 循环队列
+
+
 
