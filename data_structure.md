@@ -478,7 +478,7 @@ ElementType Pop(Stack S){
 
 基本策略：将中缀表达式转换成后缀表达式，然后求值。
 
-![1581561054087](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1581561054087.png)
+![queue_1](images/queue_1.png)
 
 **有括号的例子**
 
@@ -528,6 +528,8 @@ ElementType Pop(Stack S){
   ```
 
 - 循环队列
+
+#### （2）队列链式存储实现
 
 
 
