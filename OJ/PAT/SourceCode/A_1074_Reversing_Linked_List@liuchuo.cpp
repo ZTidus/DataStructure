@@ -1,14 +1,17 @@
 // A_1074_Reversing_Linked_List@liuchuo
 // result: AC
+// -------- mine --------
+// 看不懂这个写法...
+// -------- mine --------
 #include <iostream>
 using namespace std;
 int main(){
     int begin, k, n, count = 0;
     cin >> begin >> n >>k;
-    int temp, data[100005], next[100005], list[100005], result[100005];
+    int address, data[100005], next[100005], list[100005], result[100005];
     for(int i = 0; i < n; i++){
-        cin >> temp;
-        cin >> data[temp] >> next[temp];
+        cin >> address;
+        cin >> data[address] >> next[address];
     }
     while(begin != -1){
         list[count++] = begin;
