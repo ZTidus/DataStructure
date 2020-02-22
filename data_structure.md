@@ -786,6 +786,29 @@ void LayerOrder(node* root) {
 
 给定一颗二叉树的先序遍历序列和中序遍历序列，重建这棵二叉树。
 
+```c++
+// 先序序列区间[preL, preR], 中序序列区间[inL, inR]，返回根结点地址
+node* create(int preL, int preR, int inL, int inR) {
+    if(preL > preR)
+        return NULL;  // 先序序列长度<=0时，返回
+    node* root = new node;  // 新建根结点，存放二叉树的根结点
+    root->data = pre[preL];
+    int k;
+    for(k = inL; k <= inR; k++) {
+        if(in[k] == pre[preL]) {
+            break;
+        }
+    }
+    int numLeft = k - inL;  // 左子树的结点个数
+    // 返回左子树的根结点地址，赋值给root的左指针
+    root->lchild = create(preL+1, preL+numLeft, inL, k-1);
+    // 返回右子树的根结点地址，赋值给root的右指针
+    root->rchild = create(preL+numLeft+1, preR, k+1, inR);
+
+    return root;
+}
+```
+
 
 
 ##### 4.2.5 二叉树的静态实现
