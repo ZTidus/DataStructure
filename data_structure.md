@@ -212,7 +212,7 @@ List Insert(ElementType X, int i, List PtrL){
 
   > 删除链表第$i(1\leq i \leq n)$个位置上的结点
 
-  （1）先找到链表第$i-1​$个结点，用p指向；
+  （1）先找到链表第$i-1$个结点，用p指向；
 
   （2）再用指针s指向被删除结点
 
@@ -292,7 +292,7 @@ struct GNode{
 
 eg. 计算机求值，符号优先级
 
-中缀表达式：运算符号位于两个运算数之间。（$a+b*c​$）
+中缀表达式：运算符号位于两个运算数之间。（$a+b*c$）
 
 后缀表达式：运算符号位于两个运算数之后。($a\;b\; c\; *\;+$)
 
@@ -530,6 +530,271 @@ ElementType Pop(Stack S){
 - 循环队列
 
 #### （2）队列链式存储实现
+
+
+
+### 4. 树（《算法笔记》）
+
+#### 4.1 树与二叉树
+
+##### 4.1.1 树的定义与性质
+
+- 树(Tree)
+  - `结点`(node)
+    - 树枝分叉处
+    - 树叶：`子结点`leaf
+    - 树根：`根节点`root
+  - `边`(edge)：茎干/树枝
+- 性质
+  - `空树`(empty tree)：树没有结点
+  - 树的`层次`(layer)：从根节点开始算起，根节点为第一层
+  - 结点的`度`(degree)：结点的子树数
+  - 树的`度`：树中结点最大的度
+  - 对有**n**个结点的树，边数一定是**n-1**。且==满足连通，边数等于顶点数-1的结构一定是一棵树==
+  - `森林`(forest)：若干棵树的集合
+
+##### 4.1.2 二叉树的递归定义
+
+> 二叉树与度为2的树的区别：二叉树左右子树是严格区分的。
+
+`递归定义`：
+
+- 要么二叉树没有根节点，是一颗空树。
+- 要么二叉树由根节点左子树/右子树组成，且左子树和右子树都是二叉树。
+
+两种特殊的二叉树：
+
+- `满二叉树`：每一层结点个数达到当层达到的最大结点树
+- `完全二叉树`：除了最下面一层外，其余层结点个数达到当层达到的最大个数，且最下面一层只从左至右连续存在若干结点，连续结点的右边结点不存在。
+
+##### 4.1.3 二叉树的存储结构与基本操作
+
+- 二叉树的存储结构
+
+  二叉链表定义方式：
+
+  ```c++
+  struct node {
+      typename data;
+      node *lchild;
+      node *rchild;
+  };
+  ```
+
+  由于在建树前根节点不存在
+
+  ```c++
+  node *root = NULL;
+  ```
+
+  ```c++
+  // 生成一个新结点，结点权值为v
+  node *newNode(int y) {
+      node *Node = new node;
+      Node->data = v;
+      Node->lchild = Node->rchild = NULL;  // 初始状态下没有左右孩子
+      return Node;  // 返回新结点地址
+  }
+  ```
+
+- 二叉树结点的查找/修改
+
+  ==递归式==：对当前结点的左子树和右子树分别递归。
+
+  ==队规边界==：当前结点为空时到达死胡同。
+
+  ```c++
+  void search(node *root, int x, int newdata) {
+      if(root == NULL)
+          return;  // 空树，死胡同（递归边界）
+      if(root->data == x)
+          root->data = newdata;
+      search(root->lchild, x, newdata);  
+      search(root->rchild, x, newdata);
+  }
+  ```
+
+- 二叉树结点的插入
+
+  ```c++
+  void insert(node *&root, int x) {
+      if(root == NULL) {  // 空树，说明查找失败，也即插入位置（递归边界）
+          root = newNode(x);
+          return;
+      }
+      if() 
+          insert(root->lchild, x);
+      else
+          insert(root->rchild, x);
+  }
+  ```
+
+  
+
+- 二叉树的创建
+
+  ```c++
+  node *Create(int data[], int n) {
+      node *root = NULL;  // 新建空根节点root
+      for(int i = 0; i < n; i++) {
+          insert(root, data[i]);
+      }
+      return root;
+  }
+  ```
+
+- ==注意`root == NULL`与`*root == NULL`的区别==
+
+  结点不存在与结点存在但没有内容的区别。
+
+
+
+#### 4.2 二叉树的遍历
+
+##### 4.2.0 搜索
+
+- 深度优先搜索(**D**epth **F**irst **S**earch)
+
+  
+
+- 广度优先搜索(BFS)
+
+##### 4.2.1 先序遍历(==root==->left->right)
+
+- 实现
+
+  ```c++
+  // preorder
+  void preorder(node *root) {
+      if(root == NULL) {
+          return;  // 空树（递归边界）
+      }
+      // (递归式)
+      // 访问根结点
+      pirntf("%d\n", root->data); // 这里的输出只是一个示例，你也可以进行其他操作
+      // 访问左子树
+      preorder(root->lchild);
+      // 访问右子树
+      preorder(root->rchild);
+  }
+  ```
+
+- 性质
+
+  先序遍历序列的第一个一定是根结点。
+
+##### 4.2.2 中序遍历(left->==root==->right)
+
+- 实现
+
+  ```c++
+  // inorder
+  void inorder(node *root) {
+      if(root == NULL) {
+          return;  // 空树（递归边界）
+      }
+      // (递归式)
+      // 访问左子树
+      inorder(root->lchild);
+      // 访问根结点
+      printf("%d\n", root->data);
+      // 访问右结点
+      inorder(root->rchild);
+  }
+  ```
+
+- 性质
+
+  可以根据根结点区分出左子树和右子树。
+
+##### 4.2.3 后序遍历(left->right->==root==)
+
+- 实现
+
+  ```c++
+  // postorder
+  void postorder(node *root) {
+      if(root == NULL) {
+          return;  // 空树（递归边界）
+      }
+      // (递归式)
+      // 访问左子树
+      postorder(root->lchild);
+      // 访问右结点
+      postorder(root->rchild);
+      // 访问根结点
+      printf("%d\n", root->data);
+  }
+  ```
+
+- 性质
+
+  序列的最后一个一定是根结点。
+
+  > 必须知道中序遍历序列才能确定一棵树。
+
+##### 4.2.4 层序遍历
+
+```c++
+// Layerorder
+void LayerOrder(node *root) {
+    queue<node*> q;  // 队列中存储的是地址
+    q.push(root); // (1)将跟结点地址入队
+    while(!q.empty()) {
+        node* now = q.front();  // (2)取出队首元素
+        q.pop();
+        printf("%d", now->data);  // (2)访问队首元素
+        if(now->lchild != NULL) q.push(now->lchild); // (3)左子树进队
+        if(now->rchild != NULL) q.push(now->rchild); // (4)右子树进队
+    } // (5)直到队列为空
+}
+```
+
+当题目中要求计算结点所在层次
+
+```c++
+// 题目中要求计算结点所在层次
+struct node{
+    int data;
+    int layer;
+    node* lchild;
+    node* rchild;
+}
+void LayerOrder(node* root) {
+    queue<node*> q;
+    root->layer = 1;  // 根结点层次为1
+    q.push(root);  // (1)将根结点地址入队
+    while(!q.empty()) {
+        node* now = q.front();  // (2)取出队首元素
+        q.pop();
+        printf("%d", now.data);  // (2)访问队首元素
+        if(now->lchild != NULL) {  // 左孩子不空
+            now->lchild->layer = now->layer + 1;
+            q.push(now->lchild); // (3)左孩子进队
+        }
+        if(now->rchild != NULL) {
+            now->rchild->layer = now->layer + 1;
+            q.push(now->rchild);  // (4)右孩子进队
+        }
+    }
+}
+```
+
+
+
+##### 应用
+
+给定一颗二叉树的先序遍历序列和中序遍历序列，重建这棵二叉树。
+
+
+
+##### 4.2.5 二叉树的静态实现
+
+
+
+
+
+
 
 
 
