@@ -4,6 +4,23 @@
 
 # DATA STRUCTURE
 
+***An example to explain data structure and algorithm:***
+
+![library](images/library.png)
+
+```
+How do you find a specific book from a library?
+
+Method #1: You could check each book by shelves, one by one, first to last, until you find the book in question.
+Method #2: You could first locate the bookshelf according to the category of the book in question. You determine whether the subject is the humanities, science, computer science and so on, and then you search only that specific bookshelf.
+Each of these methods are algorithms. This is the definition of an algorithm: a method for solving a problem which can be implemented via programming.
+
+In this analogy, the books, the shelves, and the way they are arranged are all data structures.
+FROM: geeksforgeeks
+```
+
+
+
 ## 线性结构
 
 ### 1. 线性表
@@ -812,6 +829,8 @@ node* create(int preL, int preR, int inL, int inR) {
 
 
 ##### 4.2.5 二叉树的静态实现
+
+
 
 
 
