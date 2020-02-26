@@ -930,6 +930,93 @@ void LayerOrder(int root) {
 }
 ```
 
+#### 4.3 树的遍历
+
+##### 4.3.1 树的静态写法
+
+```c++
+// 结构体node定义
+struct node {
+    typename data;  // 数据域
+    int child[maxn];// 指针域，maxn为结点上限个数
+} Node[maxn];
+
+// 当结点个数较多时
+struct node {
+    typename data;
+    vector child;
+} Node[maxn];
+
+// 新建结点时
+int index = 0;
+int newNode(int v) {
+    Node[index].data = v;
+    Node[index].child.clear();  // 清空子结点？？
+    return index++;
+}
+```
+
+##### 4.3.2 树的先根遍历
+
+```c++
+/*
+       v0
+      / |  \
+    v1  v2   v3
+  /   \       |
+ v4     v5    v6
+ 的先根序列就是v0v1v4v5v2v3v6
+ */
+void PreOrder(int root) {
+    printf("%d ", Node[root].data);  // 访问当前结点
+    for(int i = 0; i < Node[root].child.size(); i++) 
+        PreOrder(Node[root].child[i]);  // 递归访问root结点的所有子结点
+}
+```
+
+##### 4.3.3 树的层序遍历
+
+```c++
+void LayerOrder(int root) {
+    queue<int> Q;
+    Q.push(root); 
+    while(!Q.empty()) {
+        int front = Q.front();
+        printf("%d ", Node[front].data);
+        Q.pop();
+        for(int i = 0; i < Node[front].child.size(); i++) 
+            Q.push(Node[front].child[i]);
+    }
+}
+
+// 需要求解对应的层号
+struct node {
+    int layer;
+    int data;
+    vector<int> child;
+}
+
+void LayerOrder(int root) {
+    queue<int> Q;
+    Q.push(root);
+    Node[root].layer = 0;
+    while(!Q.empty()) {
+        int front = Q.front();
+        printf("%d ", Node[front].data);
+        Q.pop();
+        for(int i = 0; i < Node[front].child.size(); i++) {
+            int child = Node[front].child.[i];
+            Node[child].layer = Node[front].layer + 1;
+            Q.push(child); // 将当前结点所有子结点全部入队
+        }
+    }
+}
+```
+
+##### 4.3.4 从树的遍历看DFS和BFS
+
+
+
 
 
 
