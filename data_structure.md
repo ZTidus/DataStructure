@@ -1028,9 +1028,102 @@ void LayerOrder(int root) {
 ##### 4.4.2 基本操作
 
 - 查找
+
+  ```c++
+  void search(node* root, int x) {
+      if(root == NULL) {  // 空树，查找失败
+          printf("search failed.\n");
+          return;
+      }
+      if(x == root->data)
+          printf("%d", root->data);
+      else if(x < root->data)
+          search(root->lchild, x);
+      else
+          search(root->rchild, x);
+  }
+  ```
+
 - 插入
+
+  ```c++
+  // 插入数据域为x的新结点
+  void insert(node* &root, int x) {  // 注意加&
+      if(root == NULL) {  // 即插入位置
+          root = newNode(x);
+          return;
+      }
+      if(x == root->data) { // 查找成功，即结点已存在，直接返回
+          return;
+      } else if(x < root->data) {
+          insert(root->lchild, x);
+      } else {
+          insert(root->rchild, x);
+      }
+  }
+  ```
+
 - 二叉查找树的建立
+
+  ```c++
+  // BST建立
+  node* create(int data[], int n) {
+      node* root = NULL;
+  	for(int i = 0; i < n; i++) {
+  		insert(root, data[i]);
+  	}
+  	return root;
+  }
+  ```
+
 - 删除
+
+  ```c++
+  // 删除
+  // 结点的前驱：比结点权值小的最大结点，即左子树中的最右结点
+  // 结点的后继：比结点权值大的最小结点，即右子树中的最左结点
+  /*            5
+  *            /  \
+  *          1      8
+  *        /   \   /   \
+  *       0     3 6      9
+  *           /  \  \
+  *          2    4   7
+  */
+  // 寻找以root为根结点的树中的最大权值结点
+  node* findMax(node* root) {
+  	while(root->rchild != NULL)
+  		root = root->rchild;
+  	return root;
+  }
+  // 寻找以root为根结点的树中的最小权值结点
+  node* findMin(node* root) {
+  	while(root->lchild != NULL)
+  		root = root->lchild;
+  	return root;
+  }
+  void deleteNode(node* &root, int x) {
+  	if(root == NULL) return;
+  	if(root->data == x) {
+  		if(root->lchild == NULL && root->rchild == NULL) {  // 叶子结点直接删除
+  			root = NULL;
+  		} else if(root->lchild != NULL) {
+  			node* pre = findMax(root->lchild);  // root前驱
+  			root->data = pre->data;
+  			deleteNode(root->lchild, pre->data);
+  		} else {
+  			node* next = findMin(root->rchild);  // root后继
+  			root->data = next->data;
+  			deleteNode(root->rchild, next->data);
+  		}
+  	} else if(root->data > x)
+  		deleteNode(root->lchild, x);
+  	else
+  		deleteNode(root->rchild, x);
+  }
+  ```
+
+  
 
 ##### 4.4.3 性质
 
