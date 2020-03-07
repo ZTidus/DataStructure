@@ -676,7 +676,7 @@ ElementType Pop(Stack S){
 
 - 广度优先搜索(BFS)
 
-##### 4.2.1 先序遍历(==root==->left->right)
+##### 4.2.1 先序遍历(==root==->left->right)jjj
 
 - 实现
 
@@ -891,7 +891,7 @@ int Create(int data[], int n) {
 // preorder
 void preorder(int root) {
     if(root == -1)  // （递归边界）
-        retrun;
+        return;
     // (递归式)
     printf("%d", Node[root].data);
     preorder(root->lchild);
@@ -1130,6 +1130,106 @@ void LayerOrder(int root) {
 对BST进行中序遍历，遍历的结果都是有序的。
 
 
+
+完全二叉树的存储结构：
+
+任何一个结点x，其左孩子编号一定为`2x`，右孩子编号为`2x+1`
+
+
+
+#### 4.5 平衡二叉树(AVL树)
+
+##### 4.5.1 定义
+
+AVL树任然是一颗二叉查找树。
+
+**平衡**：对`AVL树`的任意结点来说，其左子树和右子树的高度之差的绝对值不超过1。
+
+**平衡因子**：结点的左子树和右子树高度之差。
+
+```c++
+struct node {
+    int v, height;  // v: 结点权值；height: 当前子树高度
+    node *lchild, *rchild;
+};
+```
+
+```c++
+// 生成新结点
+node* newNode(int v) {
+    node* Node = new node;
+    Node->v = v;
+    Node->height = 1;
+    Node->lchild = Node->rchild = NULL;
+    return Node;
+}
+```
+
+```c++
+// 获取以root为根结点的子树当前height
+int getHeight(node* root) {
+    if(root == NULL) return 0;
+    return root->height;
+}
+```
+
+```c++
+// 计算结点root的平衡因子
+int getBalanceFactor(node* root) {
+    return getHeight(root->lchild) - getHeight(root->rchild);
+}
+```
+
+```c++
+// 更新结点root的height
+void updateHeight(node* root) {
+    root->height = max(getHeight(root->lchild), getHeight(root->rchild)) + 1;
+}
+```
+
+##### 4.5.2 基本操作
+
+- 查找
+
+  ```c++
+  // 查找AVL树中数据域为x的结点
+  void search(node* root, int x) {
+      if(root == NULL) {
+          return;
+      }
+      if(x == root->data)
+          printf("%d", root->data);  // 查找成功
+      else if(x < root->data)
+          search(root->lchild, x);  // 搜索左子树
+      else
+          search(root->rchild, x);  // 搜索右子树
+  }
+  ```
+
+- 插入
+
+  - 左旋(Left Rotation)
+
+    ```c++
+    // left ratation
+    //      A(root)
+    //    /   \
+    //  *       B(temp)
+    //        /   \
+    //       1      2
+    void L(node* &root) {
+        node* temp = root->rchild;  // root指向A，temp指向B
+        root->rchild = temp->lchild;  // (1)让B左子树1等于A右子树
+        temp->lchild = root;   	      // (2)让A成为B的左子树
+        updateHeight(root);			  // 更新结点A高度
+        updateHeight(temp);           // 更新结点B高度
+        root = temp;                  // 将根节点设成结点B
+    }
+    ```
+
+  - 右旋(Right Ratation)
+
+- 树的建立
 
 
 
