@@ -1208,6 +1208,8 @@ void updateHeight(node* root) {
 
 - 插入
 
+  ==左旋与右旋==
+
   - 左旋(Left Rotation)
 
     ```c++
@@ -1229,7 +1231,72 @@ void updateHeight(node* root) {
 
   - 右旋(Right Ratation)
 
+    ```c++
+    // right ratotion
+    //        B(root)              A(temp)
+    //      /    \               /     \
+    //    A(temp) 2   ----->    *        B
+    //  /   \                         /    \
+    // *     1                       1       2
+    void R(node* &root) {
+        node* temp = root->lchild;  // root指向结点B,temp指向结点A
+        root->lchild = temp->rchild;  //(1)A的右子树成为B的左子树
+        temp->rchild = root;          //(2)B成为A的右子树
+        updateHeight(root);
+        updateHeight(temp);
+        root = temp;                  //(3)根节点设为结点A
+    }
+    ```
+
+  ==插入==
+
+  ```c++
+  // 插入权值为v的新结点
+  void insert(node* &root, int v) {  // 注意加&
+      if(root == NULL) {  // 到达空结点，即插入位置
+          root = newNode(v);
+          return;
+      }
+      if(v < root->data) {  // v比根结点的权值小
+          insert(root->lchild, v);
+          updateHeight(root);  // 更新树高
+  		if(getBalanceFactor(root) == 2) {
+  			if(getBalanceFactor(root->lchild) == 1) {  // LL
+  				R(root);
+  			} else if(getBalanceFactor(root->lchild) == -1) {  // LR
+  				L(root->rchild);
+  				R(root);
+  			}
+  		}
+      } else {
+          insert(root->rchild, v);
+          updateHeight(root);  // 更新树高
+  		if(getBalanceFactor(root) == -2) {
+  			if(getBalanceFactor(root->rchild) == -1) {  // RR
+  				L(root);
+  			} else if(getBalanceFactor(root->rchild) == 1) {  // RL
+  				R(root->child);
+  				L(root);
+  			}
+  		}
+      }
+  }
+  ```
+
 - 树的建立
+
+  ```c++
+  // AVL树的建立
+  node* create(int data[], int n) {
+      node* root = NULL;
+  	for(int i = 0; i < n; i++) {
+      	insert(root, data[i]);
+  	}
+  	return root;
+  }
+  ```
+
+  
 
 
 
