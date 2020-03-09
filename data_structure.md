@@ -1298,6 +1298,121 @@ void updateHeight(node* root) {
 
   
 
+#### 4.6 并查集
+
+##### 4.6.1 定义
+
+- 一种维护数据集合的结构
+
+- 并(union)、查(find)、集(set)
+
+- 并查集的实现
+
+  **对同一个集合来说只存在一个根结点，且将其作为所属集合的标识。**
+
+  ```
+  int father[N];
+  ```
+
+  ```
+  eg.
+  father[1] = 1;  // 1的父亲结点是自己，1结点是根结点
+  father[2] = 1;  // 2的父亲结点是1
+  ```
+
+##### 4.6.2 基本操作
+
+- 初始化
+
+  初始，每个元素都是独立的集合。
+
+  ```c++
+  for(int i = 1; i <= N; i++) {
+      father[i] = i;
+  }
+  ```
+
+- 查找
+
+  ```c++
+  // 返回元素x所在集合根结点
+  // 递推
+  int findFather(int x) {
+      while(x != father[x]) {
+          x = father[x];  // 获得自己父亲的结点
+      }
+      return x;
+  }
+  ```
+
+  ```c++
+  // 返回元素x所在集合根结点
+  // 递归
+  int findFather(int x) {
+      if(x == father[x]) return x;
+      else return findFather(father[x]);
+  }
+  ```
+
+- 合并
+
+  把两个集合合并成一个。
+
+  ```c++
+  void Union(int a, int b) {
+      int faA = findFather(a);
+      int faB = findFather(b);
+      if(faA != faB) {
+          father[FaA] = faB;
+      }
+  }
+  ```
+
+  **合并性质**：并查集产生的每一个集合都是一颗树。
+
+##### 4.6.3 路径压缩
+
+优化查询操作，使之变为`O(1)`
+
+**将当前查询结点路径上的所有结点的父亲指向根结点。**
+
+具体步骤：
+
+- 获取x的根结点
+- 重新从x开始走一遍寻找根结点的过程，把路径上所有结点的父亲全部改为根结点
+
+```c++
+// 递推
+int findFather(int x) {
+    int a = x;
+    while(x != father[x]) {
+        x = father[x];
+    }
+    
+    while(a != father[a]) {
+        int z = a;
+        a = father[a];
+        father[z] = x;
+    }
+    return x;
+}
+```
+
+```c++
+// 递归
+// 未理解这种写法
+int findFather(int x) {
+    if(x == father[x]) return x;
+    else {
+        int F = findFather(father[x]);
+        father[x] = F;
+        return F;
+    }
+}
+```
+
+
+
 
 
 ## WRONG
