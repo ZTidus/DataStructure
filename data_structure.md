@@ -1415,6 +1415,52 @@ int findFather(int x) {
 
 
 
+#### 4.7 堆(跳过)
+
+##### 4.7.1 定义与基本操作
+
+- `堆`：一颗完全二叉树
+
+  - `大顶堆`：父亲结点的值==大于或等于==孩子结点的值
+  - `小顶堆`：父亲结点的值小于或等于孩子结点的值
+
+  定义数组表示堆：
+
+  ```c++
+  const int maxn = 100;
+  int heap[maxn], n = 10;  // n: 元素个数
+  ```
+
+  ```c++
+  // 对heap数组在[low, high]范围进行向下调整
+  void downAdjust(int low, int high) {
+      int i = low, j = i * 2;  // j为i左孩子
+      while(j < high) {
+          // rchild exists && rchild.data > lchild.data
+          if(j + 1 < high && heap[j+1] > heap[j]) {
+              j = j + 1;
+          }
+          if(heap[j] > heap[i]) {
+              swap(heap[j], heap[i]);
+              i = j;
+              j = i * 2;
+          } else {
+              break;
+          }
+      }
+  }
+  ```
+
+  
+
+##### 4.7.2 堆排序
+
+#### 4.8 哈弗曼树(跳过)
+
+
+
+
+
 ## WRONG
 
 1. 写函数参数时忘记写类型
