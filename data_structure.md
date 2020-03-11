@@ -1512,6 +1512,65 @@ int findFather(int x) {
 
 ##### 5.3.1 DFS遍历图
 
+- DFS具体实现
+
+  - 连通分量：无向图中，如果两个顶点之间可以相互到达（可通过一定路径间接到达），称这两个顶点连通。
+  - 强连通分量：有向图中，如果两个顶点可以各自通过一条有向路径到达另一个顶点，称这两个顶点强连通。
+
+- 邻接矩阵版
+
+  ```c++
+  int n, G[MAXV][MAXV];  // n: 顶点数; MAXV: 最大顶点数
+  bool vis[MAXV] = {false}; 
+  
+  void DFS(int u, int depth) {  // u: 当前访问顶点标号
+      vis[u] = true;  // u已被访问
+      for(int v = 0; v < n; v++) {
+          if(vis[v] == false && G[u][v] != INF) {  // 如果v未被访问且u可到达v
+              DFS(v, depth+1);
+          }
+      }
+  }
+  
+  // 遍历图G
+  void DFSTrave() {
+      for(int u = 0; u < n; u++) {
+          if(vis[u] == false) {
+              DFS(u, 1);
+          }
+      }
+  }
+  ```
+
+- 邻接表版
+
+  ```c++
+  vector<int> Adj[MAXV];
+  int n;
+  bool vis[MAXV] = {false};
+  
+  void DFS(int u, int depth) {
+      vis[u] = true;
+      for(int i = 0; i < Adj[u].size(); i++) {
+          int v = Adj[u][i];
+          if(vis[v] == false) {
+              DFS(v, depth+1);
+          }
+      }
+  }
+  
+  // 遍历图G
+  void DFSTrave() {
+      for(int u = 0; u < n; u++) {
+          if(vis[u] == false) {
+              DFS(u, 1);
+          }
+      }
+  }
+  ```
+
+  
+
 ##### 5.3.2 BFS遍历图
 
  
