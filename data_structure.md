@@ -1573,7 +1573,106 @@ int findFather(int x) {
 
 ##### 5.3.2 BFS遍历图
 
- 
+- 邻接矩阵版
+
+  ```c++
+  // graph bfs
+  // adj matrix
+  int n, G[maxv][maxv];  // n: 顶点数; maxv: 最大顶点数
+  bool inq[maxv] = {false};  // 加入队列，令为true
+  
+  void BFS(int u) {
+      queue<int> q;
+      q.push(u);
+      inq[u] = true;
+      while(!q.empty()) {
+          int u = q.front();  // 取出队首元素
+          q.pop();  // 队首元素出队
+          for(int v = 0; v < n; v++) {
+              if(inq[v] == false && G[u][v] != INF) {
+                  q.push(v);
+                  inq[v] = true;
+              }
+          }
+      }
+  }
+  
+  // 遍历图G
+  void BFSTrave() {
+      for(int u = 0; u < n; u++) {
+          if(inq[u] == false) {
+              BFS(u);
+          }
+      }
+  }
+  ```
+
+- 邻接表版
+
+  ```c++
+  // adj list
+  vector<int> Adj[maxv];
+int n; // 顶点数
+  bool inq[maxv] = {false};
+  
+  void BFS(int u) {
+      queue<int> q;
+      q.push(u);
+      inq[u] = true;
+      while(!q.empty()) {
+          int u = q.front();
+          q.pop();
+          for(int i = 0; i < Adj[u].size(); i++) {
+              int v = Adj[u][i];
+              if(inq[v] == false) {
+                  q.push(v);
+                  inq[v] = true;
+              }
+          }
+      }
+  }
+  
+  void BFSTrave() {
+      for(int u = 0; u < n; u++) {
+          if(inq[u] == false) {
+              BFS(u);
+          }
+      }
+  }
+  ```
+  
+  考虑层号
+  
+  ```c++
+  // BFS考虑层号
+  struct node {
+      int v;
+      int layer;
+  };
+  
+  void BFS(int s) {
+      queue<node> q;
+      node start;
+      start.v = s;
+      start.layer = 0;
+      q.push(start);
+      inq[start.v] = true;
+      while(!q.empty()) {
+          node topnode = q.front();
+          q.pop();
+          for(int i = 0; i < Adj[u].size(); i++) {
+              node next = Adj[u][i];
+              next.layer = topnode.layer + 1;
+              if(inq[next.v] == false) {
+                  q.push(next);
+                  inq[next.v] = true;
+              }
+          }
+      }
+  }
+  ```
+  
+  
 
 
 
