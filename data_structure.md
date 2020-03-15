@@ -1650,7 +1650,7 @@ int n; // 顶点数
       int layer;
   };
   
-  void BFS(int s) {
+  void BFS(int s) {  // s为起始顶点编号
       queue<node> q;
       node start;
       start.v = s;
@@ -1674,7 +1674,18 @@ int n; // 顶点数
   
   
 
+#### 5.4 最短路径
 
+##### 5.4.1 Dijkstra
+
+- 解决单源最短路问题
+
+  - 给定图`G(V, E)`
+  - 起点`s`（又称源点）
+
+  求从起点s到达其他顶点的最短距离。
+
+  
 
 
 
