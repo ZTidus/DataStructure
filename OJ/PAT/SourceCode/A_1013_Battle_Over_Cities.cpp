@@ -1,5 +1,6 @@
 // A_1013
 // error1: 输入时变量循序写错
+// learn1: 邻接表的输入方法 G[a].push_back[b]
 #include <cstdio>
 #include <cstring>
 #include <vector>
@@ -12,7 +13,7 @@ bool vis[N];// = {false};  // 标记顶点是否被访问
 int current;    // 当前删除的顶点
 void dfs(int v) {
     if(v == current) return;
-    vis[v] = true;
+    vis[v] = true;  // 当前结点v已被访问
     for(int i = 0; i < Adj[v].size(); i++) {  // 遍历顶点v的所有邻接点
         if(vis[Adj[v][i]] == false) {
             dfs(Adj[v][i]);
