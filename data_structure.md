@@ -19,7 +19,19 @@ In this analogy, the books, the shelves, and the way they are arranged are all d
 FROM: geeksforgeeks
 ```
 
+- 数据结构就是关系 -- 小甲鱼	
 
+  数据结构：1）逻辑结构 2）物理结构
+
+- 逻辑结构：1）集合结构
+
+  ​                    2）线性结构：一对一
+
+  ​				    3）树形结构：一对多层次关系
+
+  ​					4）图形结构：多对多
+
+- 物理结构：顺序存储和链式存储
 
 ## 线性结构
 
@@ -128,7 +140,7 @@ void Delete(int i, List PtrL){
 #### （2）线性表的链式存储
 
 > 不要求逻辑上相邻的两个元素物理上也相邻。
->
+> 顺序访问, 方便插入和删除
 > - 插入、删除不需移动元素
 
 ![ds_1](images/ds_1.png)
@@ -524,9 +536,9 @@ ElementType Pop(Stack S){
 #### （1）队列及顺序存储实现
 
 > 队列：具有一定操作约束的线性表
->
-> - 只能在一端插入(rear+1)，在另一端删除(front+1)。
-> - FIFO 
+> 只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作
+> 只能在一端插入(rear+1)，在另一端删除(front+1)。
+> FIFO 
 
 - 队列顺序存储实现
 
@@ -1685,21 +1697,157 @@ int n; // 顶点数
 
   求从起点s到达其他顶点的最短距离。
 
+- 邻接矩阵版
+
+  ```c++
+  // Dijkstra
+  // adj matrix
+  const int MAXV = 1000;  // 最大顶点数
+  const int INF = 1000000000;
   
+  int n, G[MAXV][MAXV];
+  int d[MAXV];  // 存放起点到达各点的最短路径长度
+  bool vis[MAXV];  // vis[i] == true:表示已被访问
+  
+  void Dijkstra(int s) {  // s: 起点
+      fill(d, d+MAXV, INF)
+          
+      d[s] = 0;  // s到它自身距离为0
+      /* (1)找到u */
+      for(int i = 0; i < n; i++) {
+          // u记录与起点s距离最短的顶点,且并未被访问过
+          int u = -1, MIN = INF;
+          for(int j = 0; j < n; j++) {
+              if(vis[j] == false && d[j] < MIN) {
+                  u = j;
+                  MIN = d[j];
+              }
+          }
+          if(u == -1) return;
+              vis[u] = true;  // (2)标记u已被访问
+          /*(3)优化 */
+          for(int v = 0; v < n; v++) {
+              if(vis[v] == false && G[u][v] != INF && d[u] + G[u][v] < d[v])
+                  d[v] = d[u] + G[u][v];  // 优化d[v]
+          }
+      }
+  }
+  ```
 
+- 邻接表版
 
+  ```c++
+  // adj list
+  struct node {
+      // v: 边的目标顶点
+      // dis: 边权
+      int v, dis;
+  };
+  vector<int> Adj[MAXV];
+  int n;
+  int d[MAXV];  // 存放起点到各点的最短路径长度
+  bool vis[MAXV] = {false};
+  
+  void Dijkstra(int s) {
+      fill(d, d+MAXV, INF);
+      d[s] = 0;
+      for(int i = 0; i < n; i++) {
+          int u = -1, MIN = INF;
+          for(int j = 0; j < n; j++) {
+              // j未被访问 && j到s的距离小于当前最小值
+              if(vis[j] == false && dis[j] < MIN) {
+                  u = j;
+                  MIN = d[j];
+              }
+          }
+          if(u == -1) return;
+          vis[u] = true;
+          // 以u为中介点，优化 起点s->u->u能所到达的顶点v的最短距离
+          for(int j = 0; j < Adj[u].size(); j++) {
+              int v = Adj[u][j].v;
+              if(vis[v] == false && d[u] + Adj[u][j].dis < d[v])
+                  d[v] = d[u] + Adj[u][j].dis;
+          }
+      }
+  }
+  ```
+
+- 求最短路径
+
+  ```c++
+  // 求最短路径
+  int n, G[MAXV][MAXV];
+  int d[MAXV];  // 存放起点到达各点的最短路径长度
+  int pre[MAXV];  // pre[v]表示从起点到顶点v的最短路径上v的前一个结点++
+  bool vis[MAXV];  // vis[i] == true:表示已被访问
+  
+  void Dijkstra(int s) {  // s: 起点
+      fill(d, d+MAXV, INF);
+      for(int i = 0; i < n; i++) pre[i] = i;  // 设置每个结点前驱为其自身++
+      d[s] = 0;  // s到它自身距离为0
+      /* (1)找到u */
+      for(int i = 0; i < n; i++) {
+          // u记录与起点s距离最短的顶点,且并未被访问过
+          int u = -1, MIN = INF;
+          for(int j = 0; j < n; j++) {
+              if(vis[j] == false && d[j] < MIN) {
+                  u = j;
+                  MIN = d[j];
+              }
+          }
+          if(u == -1) return;
+          vis[u] = true;  // (2)标记u已被访问
+          /*(3)优化 */
+          for(int v = 0; v < n; v++) {
+              if(vis[v] == false && G[u][v] != INF && d[u] + G[u][v] < d[v]) {
+                  d[v] = d[u] + G[u][v];  // 优化d[v]
+                  pre[v] = u; //++
+              }
+          }
+      }
+  }
+  ```
+
+  
 
 ## WRONG
 
 1. 写函数参数时忘记写类型
-2. 写`retun`时注意看一下前面需要返回的类型
+2. 写`return`时注意看一下前面需要返回的类型
 
 
 
 
+## harsh table
+
+- hash function/hash algorithm
+
+1. collision
+linear probing
+
+To avoid collisions, one way is to make hash table bigger than needed for the total
+amount of data you are expecting.
+
+Load Factor(负载系数) = Total number of items stored / Size of the array
+
+2. chaining 
 
 
 
+
+## Daily
+
+*20.7.4*
+循环队列:
+队尾指针是`rear`,队头是`front`，其中`QueueSize`为循环队列的最大长度
+1.队空条件：`rear==front`
+2.队满条件：`(rear+1) %QueueSIze==front`
+3.计算队列长度：`(rear-front+QueueSize)%QueueSize`
+4.入队：`(rear+1)%QueueSize`
+5.出队：`(front+1)%QueueSize`
+
+
+线性是线性，顺序是顺序，线性是逻辑结构，顺序是存储结构，两者不是一个概念，线性是指一个元素后继只有唯一的一个元素或节点，非线性是一个元素后面可以有多个后继或前继节点，顺序是指存储结构连续，例如数组是顺序的，链表不是顺序的，但他们都是线性的。当然顺序也可以是非线性的，例如顺序结构存储非线性结构的二叉树！！！
 
 
 
