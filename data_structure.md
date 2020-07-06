@@ -141,6 +141,7 @@ void Delete(int i, List PtrL){
 
 > 不要求逻辑上相邻的两个元素物理上也相邻。
 > 顺序访问, 方便插入和删除
+>
 > - 插入、删除不需移动元素
 
 ![ds_1](images/ds_1.png)
@@ -557,6 +558,8 @@ ElementType Pop(Stack S){
   ```
 
 - 循环队列
+
+![circle_queue](./images/circle_queue.png)
 
 #### （2）队列链式存储实现
 
