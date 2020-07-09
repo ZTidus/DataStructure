@@ -27,3 +27,38 @@ Constraints:
 nums.length == 2n
 1 <= nums[i] <= 10^3
 */
+
+
+//class Solution {
+//public:
+//    vector<int> shuffle(vector<int>& nums, int n) {
+//        vector<int> a[n], b[n];
+//        for (int i = 0; i < n; i++) {
+//            a[i] = nums[i];
+//            b[i] = nums[i+n];
+//        }
+//        int ai = 0, bi = 0
+//        for (i = 0; i < 2n; i += 2) {
+//            nums[i] = a[ai];
+//            nums[i+1] = b[bi];
+//            ai++;
+//            bi++;
+//        }
+//        
+//    }
+//};
+
+// 我的思路：将nums分成两个长度为n的ventor，然后就重新赋值，一个接一个，但是编译报错。
+// 看了一个别人解析的，非常简单，使用了vector的push_back()方法
+//
+class Solution {
+public:
+    vector<int> shuffle(vector<int>& nums, int n) {
+        vector<int> res;
+        for (int i = 0; i < n; i++) {
+            res.push_back(nums[i]);
+            res.push_back(nums[i+n]);
+        }
+        return res;
+    }
+};
