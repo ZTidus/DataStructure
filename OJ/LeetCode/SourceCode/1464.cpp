@@ -44,3 +44,17 @@ public:
 
 // 题解: 在数组中任选两个不同的下标，找出其对应的数组值相乘后的最大值。
 // 注: 两个下标是不同的，写循环时一定要注意。
+
+/* better solution */
+/*
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        sort(nums.begin(), nums.end()); // sort() default ascending
+        int len = nums.size();
+        return (nums[len-1] - 1) * (nums[len-2] - 1);
+    }
+};
+*/
+// 先将数组中的数字排序，最高的两个数一定在数组的最后两位，再进行相乘，这样就不必使用循环了。
+// 解法1是104ms, 解法2是12ms
