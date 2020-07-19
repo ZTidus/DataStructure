@@ -1150,6 +1150,9 @@ void LayerOrder(int root) {
 
 任何一个结点x，其左孩子编号一定为`2x`，右孩子编号为`2x+1`
 
+完全二叉树(complete binary tree)并不完全，为什么叫完全二叉树?
+
+
 
 
 #### 4.5 平衡二叉树(AVL树)
