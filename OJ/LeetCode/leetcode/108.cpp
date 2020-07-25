@@ -59,4 +59,5 @@ public:
 /* 一些总结 */
 // 1. 使用递归，递归边界: end <= start
 // 2. 递归式: 找出中间索引
-//
+// 3. return toBST(nums, 0, nums.size());
+// 这里的nums.size()为什么不是num.size()-1???
