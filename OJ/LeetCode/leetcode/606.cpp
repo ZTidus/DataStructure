@@ -54,16 +54,18 @@ except we can't omit the first parenthesis pair to break the one-to-one mapping 
  */
 class Solution {
 public:
-    string tree2str(TreeNode* t) {
-        if (t == NULL)
-            return "";
-        string s = to_string(t->val);
-        if (t->left == NULL && t->right == NULL)
+    string tree2str(TreeNode* root) {
+        // 1. root == null
+        if (!root) return "";
+        string s = to_string(root->val);
+        // 2. root->left == null && root->right == null
+        if (!root->left && !root->right)
             return s + "";
-        if (t->right == NULL)
-            return s + "(" + tree2str(t->left) + ")";
-        
-        return s + "(" + tree2str(t->left) + ")(" + tree2str(t->right) + ")";
+        // 3. root->right == null
+        if (!root->right)
+            return s + "(" + tree2str(root->left) + ")";
+        // 4. default is that the root->left must have ()
+        return s + "(" + tree2str(root->left) + ")(" + tree2str(root->right) + ")";
     }
 };
 
