@@ -42,15 +42,6 @@ using namespace std;
  */
 class Solution {
 public:
-    //void dfs(TreeNode* root, vector<string>& res)
-    //{
-    //    if (!root) return;
-    //    if (!root->left && !root->right)
-    //        return;
-    //    string temp = "";
-    //    res.push_back({});
-    //    
-    //}
     void preorder(TreeNode* root, vector<string>& res, string t)
     {
         if (!root) return;
