@@ -77,6 +77,25 @@ public:
     }
 };
 
+// solution3
+class Solution {
+public:
+    TreeNode* find(TreeNode* root, int val)
+    {
+        if (!root) return root;
+        if (root->val == val)
+            return root;
+        else if (val < root->val)
+            return find(root->left, val);
+        else 
+            return find(root->right, val);
+    }
+    
+    TreeNode* searchBST(TreeNode* root, int val) {
+        return find(root, val);
+    }
+};
+
 /* 一些总结 */
 // 1. while(root)的方式就可以一直循环下去
 // 2. nullptr: c++中的空指针常量
