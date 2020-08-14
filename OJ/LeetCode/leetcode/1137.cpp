@@ -64,7 +64,7 @@ public:
 // 1. 题意: 
 //
 // 需要注意的点: 
-// 1. dp is what? I saw it in the discuss area.
+// 1. dp is what? I saw it in the discuss area. dp is dynamic programming.
 // 2. Need to record each state's value in vector.
 // 3. Not recursion.
 
