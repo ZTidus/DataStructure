@@ -1,8 +1,3 @@
-# Some useful programs
-
-## 1. binToDec
-
-```c
 // binToDec
 #include <stdio.h>
 #include <math.h>
@@ -30,4 +25,3 @@ int main(int argc, char *argv[])
     printf("%d -bin to dec - %d\n", n, binToDec(n));
     return 0;
 }
-```
