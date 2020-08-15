@@ -115,7 +115,7 @@ public:
     }
     
     TreeNode* increasingBST(TreeNode* root) {
-        TreeNode* res = new TreeNode(0);
+        TreeNode* res = new TreeNode(0); // 注意需要初始化，不然会报错。
         cur = res;
         inorder(root);
         
@@ -124,4 +124,4 @@ public:
 };
 /* 一些总结 */
 // 1. recursive看着更清晰一些。
-
+// 2. 118行需要初始化
