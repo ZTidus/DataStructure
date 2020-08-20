@@ -48,18 +48,6 @@ public:
     }
 };
 
-/* better solution */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
@@ -74,11 +62,25 @@ public:
     }
 };
 
+// 2. 更简洁的写法
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if (!root) return 0;
+        else
+        {
+            int L = maxDepth(root->left);
+            int R = maxDepth(root->right);
+            return 1 + max(L, R);
+        }
+    }
+};
+
 /* 一些总结 */
 // 1. 题意: 
 //
 // 需要注意的点: 
 // 1. 下面一种方法写法更加简洁。
-// 2. 
+// 2. 求出左子树高度，求出右子树高度，求出左右中的最大者，加一返回。
 // 3. 
 
