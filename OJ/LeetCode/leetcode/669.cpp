@@ -72,5 +72,25 @@ public:
         return root;
     }
 };
+
+// better
+class Solution {
+public:
+    TreeNode* trimBST(TreeNode* root, int L, int R) {
+        if (!root) return nullptr;
+        if (root->val < L)
+            return trimBST(root->right, L, R);
+        else if (root->val > R)
+            return trimBST(root->left, L, R);
+        else 
+        {
+            root->left = trimBST(root->left, L, R);
+            root->right = trimBST(root->right, L, R);
+        }
+        
+        return root;
+    }
+};
+// 当根结点值小于区域左边界时，对根结点右子树剪枝，当根结点值大于区域右边界时，对根结点左子树剪枝，如果根结点值处于区域之间，不剪枝，并且递归推出其左右子树的剪枝结果。
 /* 一些总结 */
 // 分类讨论，不在区间之间和在区间之间
