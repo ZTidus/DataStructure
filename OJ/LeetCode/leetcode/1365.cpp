@@ -31,46 +31,31 @@
 // 2 <= nums.length <= 500
 // 0 <= nums[i] <= 100
 
+// better 
+// map ✓
 class Solution {
 public:
     vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+        map<int, int> mp;
         vector<int> res;
-        for (int i = 0; i < nums.size(); i++) {
-            int count = 0;
-            for (int j = 1; j < nums.size(); j++) {
-                if (nums[i] > nums[j]) count++;
+        
+        // find out the number's frequence
+        for (int i = 0; i < nums.size(); i++)
+        {
+            mp[nums[i]]++;
+        }
+        
+        for (int i = 0; i < nums.size(); i++)
+        {
+            int cnt = 0;
+            for (auto e: mp)
+            {
+                if (e.first != nums[i] && e.first < nums[i])
+                    cnt += e.second;
             }
-            res[i] = count;
+            res.push_back(cnt);
         }
+        
         return res;
     }
 };
-
-
-class Solution {
-public:
-    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
-        int count[101];
-        int nums_len = nums.size() ;
-        int res[len];
-
-        for (int i = 0; i < nums_len; i++) {
-            count[nums[i]]++;
-        }
-
-        for (int i = 1; i <= 100; i++) {
-            count[i] += count[i-1];
-        }
-
-
-        for (int i = 0; i < nums_len; i++) {
-            if (nums[i] == 0)
-                res[i] = 0;
-            else
-                res[i] = count[nums[i] - 1];
-        }
-
-        return res;
-    }
-};
-
