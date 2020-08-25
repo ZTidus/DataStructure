@@ -25,6 +25,7 @@ Output: 4
  */
 
 /* my solution */
+// space: O(N) not good
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
@@ -50,13 +51,22 @@ public:
 };
 
 /* better solution */
-
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int res = 0;
+        for (auto i: nums)
+            res = res ^ i;
+        
+        return res;
+    }
+};
 
 /* 一些总结 */
 // 1. 题意: 
 //
 // 需要注意的点: 
-// 1. 
+// 1. 由于加上了时间复杂度必须是 O(n) ，并且空间复杂度为 O(1)的条件，因此不能用排序方法，也不能使用 map 数据结构。
 // 2. 
 // 3. 
 
