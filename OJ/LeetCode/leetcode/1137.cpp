@@ -67,4 +67,6 @@ public:
 // 1. dp is what? I saw it in the discuss area. dp is dynamic programming.
 // 2. Need to record each state's value in vector.
 // 3. Not recursion.
+// 4. why is dp(n+1), not dp(n)? Because there is a dp[0]
+// 5. 时刻谨记recursive boundary and 递归式
 
