@@ -94,6 +94,26 @@ public:
     }
 };
 
+// 2
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if (!headA || !headB) return nullptr;
+        ListNode *p = headA, *q = headB;
+        while (p || q)
+        {
+            if (!p) p = headB;
+            if (!q) q = headA;
+            if (p == q) return p;
+            p = p->next;
+            q = q->next;
+        }
+        
+        return nullptr;
+    }
+};
+// 由于链表一长一短，当链表A先到结尾时，让其指向B的开头，如果B先到达结尾，则指向A的开头。这样当有相遇的地方时，两个指针走过的行程是一样的。
+
 /* 一些总结 */
 // 1. [题意]寻找两个链表相同部分的第一个结点。two pointers, 计算两个的长度，让指针向前走，是当前长度相同，当两个指针相同时，返回即可
 // 2. the diff should be positive
