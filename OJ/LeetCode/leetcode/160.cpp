@@ -96,4 +96,5 @@ public:
 
 /* 一些总结 */
 // 1. [题意]寻找两个链表相同部分的第一个结点。two pointers, 计算两个的长度，让指针向前走，是当前长度相同，当两个指针相同时，返回即可
+// 2. the diff should be positive
 
