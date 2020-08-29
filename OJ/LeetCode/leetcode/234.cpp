@@ -21,7 +21,45 @@ Could you do it in O(n) time and O(1) space?
  */
 
 /* my solution */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        ListNode* newHead = overturn(head);
+        vector<int> origin, overturned;
+        toVector(head, origin);
+        toVector(newHead, overturned);
+        
+        return origin == overturned;
+    }
+private:
+    void toVector(ListNode* head, vector<int>& v)
+    {
+        if (!head) return;
+        while (head)
+        {
+            v.push_back(head->val);
+            head = head->next;
+        }
+    }
+    
+    ListNode* overturn(ListNode* head)
+    {
+        if (!head) return nullptr;
+        ListNode* yummy = new ListNode(-1);
+        //yummy->next = head;
+        while (head)
+        {
+            ListNode* inserted = new ListNode(head->val);
+            inserted->next = yummy->next;
+            yummy->next = inserted;
+            head = head->next;
+        }
+        
+        return yummy->next;
+    }
+};
 
+// 将原来的链表和翻转的链表导入数组中进行对比。
 
 /* better solution */
 /**
