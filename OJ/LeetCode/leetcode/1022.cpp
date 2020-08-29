@@ -38,7 +38,7 @@ The answer will not exceed 2^31 - 1.
 // none
 
 /* better solution */
-
+// 1
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -79,6 +79,25 @@ public:
     }
 };
 
+// 2 
+class Solution {
+public:
+    int sumRootToLeaf(TreeNode* root) {
+        return dfs(root, 0);
+        
+    }
+private:
+    int dfs(TreeNode* root, int sum)
+    {
+        if (!root) return 0;
+        sum = 2 * sum + root->val;
+        if (!root->left && !root->right)
+            return sum;
+        
+        return dfs(root->left, sum) + dfs(root->right, sum);
+    }
+};
 /* 一些总结 */
 // 1. helper()里边的书写逻辑需要学习
 // 2. 进制换算过程需要多练。
+// 第二种方法要更容易理解一些，不必再另外令变量，临时变量只在函数区域使用最后返回最终的结果，更加简洁。
