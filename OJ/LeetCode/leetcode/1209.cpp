@@ -76,4 +76,5 @@ public:
 
 /* 一些总结 */
 // 1. make_pair()
+// 2. 这一道题是关于栈的题目，但是使用了vector，将vector改成了stack，出了错，stack里不能使用pair吗?
 
