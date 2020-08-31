@@ -52,7 +52,29 @@ public:
         return hasPathSum(root->left, remaining_sum) || hasPathSum(root->right, remaining_sum);
     }
 };
-
+// 2 更易理解
+class Solution {
+public:
+    bool res = false;
+    bool hasPathSum(TreeNode* root, int sum) {
+        if (!root) return false;
+        helper(root, sum);
+        
+        return res;
+    }
+private:
+    void helper(TreeNode* root, int sum)
+    {
+        if (!root) return;
+        if (!root->left && !root->right && root->val == sum)
+        {
+            res = true;
+            return;
+        }
+        helper(root->left, sum - root->val);
+        helper(root->right, sum - root->val);
+    }
+};
 /* 一些总结 */
 // 1. 题意: 
 //[题意]找到从二叉树根结点到叶结点这条路径的值是否等于给定值，如果存在返回true.
