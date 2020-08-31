@@ -39,7 +39,7 @@ public:
         stack<int> s;
         for (auto e: nums2)
         {
-            while (!s.empty() && s.top() < e)
+            while (!s.empty() && s.top() < e) // 这个地方为什么使用了while而不是if???
             {
                 m[s.top()] = e;
                 s.pop();
