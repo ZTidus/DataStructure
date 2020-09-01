@@ -67,7 +67,31 @@ public:
         return paths;
     }
 };
-
+// better ✓ ✓  backtracking
+class Solution {
+public:
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        vector<int> tempList;
+        vector<vector<int>> res;
+        backtrack(root, sum, res, tempList);
+        
+        return res;
+    }
+private:
+    void backtrack(TreeNode* root, int sum, vector<vector<int>>& res, vector<int>& tempList)
+    {
+        if (!root) return;
+        tempList.push_back(root->val);
+        if (root->val == sum && !root->left && !root->right)
+            res.push_back(tempList);
+        else
+        {
+            backtrack(root->left, sum - root->val, res, tempList);
+            backtrack(root->right, sum - root->val, res, tempList);
+        }
+        tempList.pop_back();
+    }
+};
 /* 一些总结 */
 // 1. 题意: 
 //
