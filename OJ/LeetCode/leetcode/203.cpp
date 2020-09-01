@@ -18,16 +18,7 @@ Output: 1->2->3->4->5
 // none
 
 /* better solution */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+// 不好理解
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
@@ -49,6 +40,35 @@ public:
     }
 };
 
+// better better
+// 这种更好
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if (!head) return nullptr;
+        ListNode* yummy = new ListNode(-1);
+        yummy->next = head;
+        ListNode* cur = yummy;
+        // 1. 头结点是val如何处理?
+        while (cur->next)
+        {
+            
+            if (cur->next->val == val)
+            {
+                ListNode* delNode = cur->next;
+                cur->next = delNode->next;
+                delete delNode;
+            }
+            else
+                cur = cur->next;
+        }
+        ListNode* resNode = yummy->next;
+        
+        return resNode;
+    }
+};
 /* 一些总结 */
-// 1. 第一步判断想到了，就是44到45这个判断。
+// 1. 记录在链表中行动的cur是需要cur = cur->next;的
+// 2. delete yummy的操作
+// 3. 判断当前结点的下一个结点是否为空!
 
