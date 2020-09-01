@@ -36,17 +36,6 @@ Follow up: Could you do that without using any extra space? (Assume that the imp
 // none
 
 /* better solution */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
 public:
     void dfs(TreeNode* root, unordered_map<int, int>& umap)
@@ -78,7 +67,40 @@ public:
         return res;
     }
 };
-
+// easy to understand
+class Solution {
+public:
+    vector<int> findMode(TreeNode* root) {
+        unordered_map<int, int> ump;
+        inorder(root, ump);
+        vector<int> res;
+        
+        int max_freq = 0;
+        for (auto e : ump)
+        {
+            if (e.second > max_freq)
+                max_freq = e.second;
+        }
+        printf("%d\n", max_freq);
+        for (auto e : ump)
+        {
+            if (e.second == max_freq)
+            {
+                res.push_back(e.first); 
+            }
+        }
+        
+        return res;
+    }
+private:
+    void inorder(TreeNode* root, unordered_map<int, int>& ump)
+    {
+        if (!root) return;
+        inorder(root->left, ump);
+        ump[root->val]++;
+        inorder(root->right, ump);
+    }
+};
 /* 一些总结 */
 // [题意]找出二叉树中出现频次最高的数字。unordered_map<int, int> umap, umap.first, umap.second; 
 
