@@ -58,17 +58,6 @@ public:
 };
 
 // 2
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
 public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
@@ -78,11 +67,14 @@ private:
     TreeNode* helper(vector<int> nums, int L, int R)
     {
         if (L > R) return nullptr;
+        // 建立当前子树根结点
         int mid = L + (R - L) / 2;
         TreeNode* root = new TreeNode(nums[mid]);
+        // 左子树下层递归
         root->left = helper(nums, L, mid - 1);
+        // 右子树下层递归
         root->right = helper(nums, mid + 1, R);
-        
+        // 返回根结点
         return root;
     }
 };
