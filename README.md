@@ -2,7 +2,7 @@
 
 > 学习数据结构上传用
 
-- [Leetcode](./OJ/Leetcode/leetcode) 
+- [Leetcode](https://github.com/ONGOING-Z/DataStructure/tree/master/OJ/LeetCode/leetcode) 
 
 ### 学习资源
 
