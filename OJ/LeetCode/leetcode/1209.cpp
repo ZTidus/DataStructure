@@ -43,8 +43,36 @@ s only contains lower case English letters.
  */
 
 /* my solution */
-// none
-
+class Solution {
+public:
+    string removeDuplicates(string s, int k) {
+        if (s.empty()) return "";
+        stack<char> stk;
+        unordered_map<char, int> ump;
+        
+        for (auto e : s)
+        {
+            if (stk.empty())
+                stk.push(e);
+            else if (stk.top() == e && k-1 == ump[e])
+                stk.pop();
+            else if (stk.top() == e)
+                ump[e]++;
+            else
+                stk.push(e);
+        }
+        
+        string res = "";
+        for (auto e : ump)
+        {
+            for (int i = 0; i < e.second; i++)
+                res += to_string(e.first);
+        }
+        
+        return res;
+    }
+};
+// 上边这种做法为什么是错的?
 /* better solution */
 class Solution {
 public:
@@ -55,7 +83,7 @@ public:
         {
             if (vec.empty())
                 vec.push_back(make_pair(c, 1));
-            else if (c == vec.back().first && vec.back().second == k-1)
+            else if (c == vec.back().first && vec.back().second == k-1) // 注意这里是k-1, not k
                 vec.pop_back();
             else if (c == vec.back().first)
                 vec.back().second++;
@@ -77,4 +105,8 @@ public:
 /* 一些总结 */
 // 1. make_pair()
 // 2. 这一道题是关于栈的题目，但是使用了vector，将vector改成了stack，出了错，stack里不能使用pair吗?
+// 这道题再一次做时出了很多问题: 
+// 1. 为什么使用vector而不是stack
+// 2. k 与 k-1
+// 3. 复合元素类型的构造
 
