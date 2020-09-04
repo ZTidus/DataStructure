@@ -75,12 +75,23 @@ public:
         }
     }
 };
+// 3. 更容易想到的办法
+// 这种方法和第2种方法一样，只是将有无临时变量而已。
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if (!root) return 0;
+        if (!root->left && !root->right)
+            return 1;
+        return 1 + max(maxDepth(root->left), maxDepth(root->right));
+    }
+}
 
 /* 一些总结 */
 // 1. 题意: 
 //
 // 需要注意的点: 
-// 1. 下面一种方法写法更加简洁。
+// 1. 第2方法写法更加简洁。
 // 2. 求出左子树高度，求出右子树高度，求出左右中的最大者，加一返回。
 // 3. 
 
