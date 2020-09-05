@@ -4,7 +4,7 @@
 using namespace std;
 
 /* Leetcode */
-/* Type:  */
+/* Type:  hash table*/
 /* 题目信息 */
 /*
  *
