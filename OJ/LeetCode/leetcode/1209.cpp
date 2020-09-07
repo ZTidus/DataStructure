@@ -83,7 +83,7 @@ public:
         {
             if (vec.empty())
                 vec.push_back(make_pair(c, 1));
-            else if (c == vec.back().first && vec.back().second == k-1) // 注意这里是k-1, not k
+            else if (c == vec.back().first && vec.back().second == k-1) // 注意这里是k-1, not k!!!
                 vec.pop_back();
             else if (c == vec.back().first)
                 vec.back().second++;
