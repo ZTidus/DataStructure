@@ -66,7 +66,31 @@ public:
 };
 
 /* better solution */
-
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+        if (!root) return res;
+        stack<TreeNode*> stk;
+        TreeNode* cur = root;
+        while (cur || !stk.empty())  // 注意这里是while，不是if
+        {
+            if (cur)
+            {
+                res.push_back(cur->val);
+                stk.push(cur);
+                cur = cur->left;
+            }
+            else
+            {
+                cur = stk.top(); stk.pop();
+                cur = cur->right;
+            }
+        }
+        
+        return res;
+    }
+};
 
 /* 一些总结 */
 // 1. 题意: 
