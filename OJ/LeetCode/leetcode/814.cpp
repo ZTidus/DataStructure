@@ -42,12 +42,12 @@ private:
     bool containOne(TreeNode* root)
     {
         if (!root) return false;
-        bool a1 = containOne(root->left);
-        bool a2 = containOne(root->right);
-        if (!a1) root->left = nullptr;
-        if (!a2) root->right = nullptr;
+        bool L = containOne(root->left);
+        bool R = containOne(root->right);
+        if (!L) root->left = nullptr;
+        if (!R) root->right = nullptr;
         
-        return root->val == 1 || a1 || a2;
+        return root->val == 1 || L || R;
     }
 };
 
