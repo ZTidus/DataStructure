@@ -70,9 +70,9 @@ public:
         }
         
         if (val > root->val)
-            root->right = insertIntoBST(root->right, val);
+            root->right = insertIntoBST(root->right, val); // not return
         else if (val < root->val)
-            root->left = insertIntoBST(root->left, val);
+            root->left = insertIntoBST(root->left, val);  // not return
         
         return root;
     }
