@@ -139,7 +139,7 @@ private:
             return false;
         if (prev_ && prev_->val >= root->val)  // 因为是排序过的，所以只需要比较当前结点和上一个结点的值就可以了
             return false;
-        prev_ = root;
+        prev_ = root;              // 这一步也很容易漏掉
         return inorder(root->right);
     }
 };
