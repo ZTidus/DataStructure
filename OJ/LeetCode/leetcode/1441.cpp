@@ -61,14 +61,14 @@ public:
     vector<string> buildArray(vector<int>& target, int n) {
         vector<string> res;
         int curElem = 1;
-        for (int i = 0; i < target.size(); i++)
+        for (int i = 0; i < target.size(); i++)  // 对象是target中的数字
         {
             // 对于不存在与target[]中的数字，给予push/pop服务
             while (curElem != target[i])
             {
                 res.push_back("Push");
                 res.push_back("Pop");
-                curElem++;
+                curElem++;  // important!!!
             }
             res.push_back("Push"); // 在其中的基于push服务
             curElem++;
@@ -81,4 +81,4 @@ public:
 /* 一些总结 */
 // 1. 对于在target[]中的数字，给予push服务
 // 2. 对于不在target[]中的数字，给予push/pop服务
-
+// 3. curNum的自增
