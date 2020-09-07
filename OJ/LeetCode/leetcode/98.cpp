@@ -85,11 +85,69 @@ public:
     }
 };
 
+// 2
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        return helper(root, LLONG_MIN, LLONG_MAX);
+        
+    }
+private:
+    bool helper(TreeNode* root, long min_val, long max_val)
+    {
+        if (!root) return true;
+        if (root->val <= min_val || root->val >= max_val)
+            return false;
+        return helper(root->left, min_val, root->val) &&
+            helper(root->right, root->val, max_val);
+        
+    }
+};
+// 如果LLONG_MIN和LLONG_MAX没有用怎么办
+// 需要注意下边这种方法中指针和取地址的操作，很容易错
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        return helper(root, nullptr, nullptr); // 避免使用数据类型，用空指针来表示无穷大和无穷小
+        
+    }
+private:
+    bool helper(TreeNode* root, int *min_val, int *max_val)
+    {
+        if (!root) return true;
+        if ((min_val && *min_val >= root->val) || 
+           (max_val && *max_val <= root->val))
+            return false;
+        return helper(root->left, min_val, &root->val) &&
+            helper(root->right, &root->val, max_val);
+    }
+};
+
+// 使用BST性质,这种最容易理解
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        prev_ = nullptr;
+        return inorder(root);
+    }
+private:
+    TreeNode* prev_;
+    bool inorder(TreeNode* root)
+    {
+        if (!root) return true;
+        if (!inorder(root->left))  // 这句不好写出来
+            return false;
+        if (prev_ && prev_->val >= root->val)  // 因为是排序过的，所以只需要比较当前结点和上一个结点的值就可以了
+            return false;
+        prev_ = root;
+        return inorder(root->right);
+    }
+};
 /* 一些总结 */
 // 1. 题意: 
 //
 // 需要注意的点: 
-// 1. 
+// 1. 多个||和&&，注意添加括号
 // 2. 
 // 3. 
 
