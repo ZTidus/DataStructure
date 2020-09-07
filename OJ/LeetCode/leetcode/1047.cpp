@@ -63,9 +63,10 @@ public:
         stack<char> st;
         for (auto cur: S)
         {
-            if (st.empty())
-                st.push(cur);
-            else if (st.top() == cur)
+            //if (st.empty())
+            //    st.push(cur);
+            //else if (st.top() == cur)
+            if (!st.empty() && st.top() == cur)
                 st.pop();
             else st.push(cur);
         }
