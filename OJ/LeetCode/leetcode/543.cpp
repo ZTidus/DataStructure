@@ -30,17 +30,6 @@ using namespace std;
 // none
 
 /* better solution */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
 public:
     int ans;
@@ -60,7 +49,26 @@ public:
         return ans - 1;
     }
 };
-
+// 2 better
+class Solution {
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        res_ = 0;
+        dfs(root);
+        return res_; // 注意这里返回的变量，我总是将return dfs(root);这样写了
+    }
+private:
+    int res_;
+    int dfs(TreeNode* root)
+    {
+        if (!root) return 0;
+        int L = dfs(root->left);
+        int R = dfs(root->right);
+        res_ = max(res_, L + R);
+        
+        return 1 + max(L, R);
+    }
+};
 /* 一些总结 */
 // [题意]找到二叉树中距离最远的两个结点的距离; 这个加一是什么逻辑?
 
