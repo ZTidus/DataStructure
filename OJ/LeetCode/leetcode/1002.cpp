@@ -50,7 +50,7 @@ public:
             for (int j = 0; j < 26; j++)
             {
                 count[j] = min(count[j], tmp[j]);
-                tmp[j] = 0;
+                tmp[j] = 0; // 这个单词对比完后需要清零，进行下一个单词的对比！
             }
                 
         }
