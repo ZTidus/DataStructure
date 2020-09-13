@@ -38,8 +38,6 @@ Explanation: The smallest value is 2, but there isn't any second smallest value.
 
 /* my solution */
 // none
-
-/* better solution */
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -51,6 +49,37 @@ Explanation: The smallest value is 2, but there isn't any second smallest value.
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+class Solution {
+public:
+    int findSecondMinimumValue(TreeNode* root) {
+        if (!root) return -1;
+        unordered_set<int> st;
+        inorder(root, st);
+        cout << "st.size()=" << st.size() << endl;
+        int cnt = 2;
+        for (auto e : st)
+        {
+            cout << cnt << endl;
+            if (!--cnt)
+            {
+                //cout << cnt << endl;
+                return e;
+            }
+        }
+        return -1;
+    }
+private:
+    void inorder(TreeNode* root, unordered_set<int>& st)
+    {
+        if (!root) return;
+        inorder(root->left, st);
+        st.insert(root->val);
+        inorder(root->right, st);
+    }
+};
+// 上边这个出了什么问题???没检查出来
+// 上边这个错误的原因是使用了unordered_set，这个容器中的数据是无序的。
+/* better solution */
 class Solution {
 public:
     void preorder(TreeNode* root, set<int>& s)
