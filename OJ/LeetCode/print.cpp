@@ -18,3 +18,14 @@ void printLinkedList(ListNode* head)
     }
     printf("\n");
 }
+// inorder
+private:
+    void inorder(TreeNode* root, unordered_set<int>& st)
+    {
+        if (!root) return;
+        inorder(root->left, st);
+        st.insert(root->val);
+        inorder(root->right, st);
+    }
+};
+
