@@ -36,7 +36,7 @@ public:
         pre = cur;
         last = cur->next;
         
-        for (int i = m; i <= n; i++)
+        for (int i = m; i <= n; i++) // 注意是<=n
         {
             cur = pre->next;
             pre->next =  cur->next;
