@@ -105,7 +105,7 @@ public:
             if (!p) p = headB;
             if (!q) q = headA;
             if (p == q) return p;
-            p = p->next;
+            p = p->next; // 这句前面为什么不能加上if (p->next)
             q = q->next;
         }
         
