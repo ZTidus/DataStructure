@@ -44,12 +44,12 @@ public:
         vector<int> res;
         stack<TreeNode*> st;
         TreeNode* cur = root;
-        while (cur || !st.empty())
+        while (cur || !st.empty()) // 这个是或操作
         {
             if (cur)
             {
                 res.push_back(cur->val);
-                st.push(cur);
+                st.push(cur); // 不要忘记将元素压入栈中
                 cur = cur->right;
             }
             else
