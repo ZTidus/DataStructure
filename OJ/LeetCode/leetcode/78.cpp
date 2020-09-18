@@ -55,22 +55,29 @@ private:
     }
 };
 
-// 2
+// 2 dfs + backtracking from huahua
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> res;
         vector<int> cur;
+        // 0个元素可以，n个元素也可以
         for (int i = 0; i <= nums.size(); i++)
             dfs(nums, i, 0, cur, res);
         
         return res;
     }
 private:
+    /*
+     * C(m, n): m个元素中取n个元素
+     * s: start point
+     * n: 要取多少个元素
+     * cur: 当前的数组
+     */
     void dfs(const vector<int>& nums, int n, int s,
              vector<int>& cur, vector<vector<int>>& res)
     {
-        if (n == cur.size())
+        if (n == cur.size()) // 找到了一个解
         {
             res.push_back(cur);
             return;
@@ -89,6 +96,6 @@ private:
 //
 // 需要注意的点: 
 // 1. combination基本写法
-// 2. 
+// 2. combination不关心顺序
 // 3. 
 
