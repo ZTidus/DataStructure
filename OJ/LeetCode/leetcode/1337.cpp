@@ -94,6 +94,6 @@ public:
 //
 // 需要注意的点: 
 // 1. multimap的使用，它可以存入重复的键
-// 2. 
+// 2. multimap.insert()
 // 3. 
 
