@@ -82,6 +82,9 @@ public:
             else
             {
                 cur = st.top(); st.pop();
+                // 这一步如果写成
+                // TreeNode* cur = st.top(); st.pop();
+                // 这样就会是错的，为什么?
                 res.push_back(cur->val);
                 cur = cur->right;
             }
