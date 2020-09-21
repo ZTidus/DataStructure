@@ -81,7 +81,7 @@ public:
             cur = cur->next;
         }
         int processNum = len - n;
-        cur = dummy;
+        cur = dummy; // 这个赋值很重要，不要赋值为head,这样当链表中只有一个元素，而这个元素就是要被删除的时候会很有用
         while (processNum--)
             cur = cur->next;
         cur->next = cur->next->next;
