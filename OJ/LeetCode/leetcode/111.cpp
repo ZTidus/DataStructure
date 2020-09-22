@@ -49,6 +49,7 @@ public:
             return minDepth(root->right) + 1;
         if (!root->right) // root右子树不存在而且root不是叶子结点，只能去左子树寻找
             return minDepth(root->left) + 1;
+        // 对于左右孩子都存在的结点
         return min(minDepth(root->left), minDepth(root->right)) + 1;
     }
 };
