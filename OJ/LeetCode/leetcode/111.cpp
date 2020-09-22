@@ -28,17 +28,7 @@ return its minimum depth = 2.
 // none
 
 /* better solution */
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
+// 1. 这个解法我还没有看懂
 class Solution {
 public:
     
@@ -50,7 +40,17 @@ public:
             return min(minDepth(root->left), minDepth(root->right)) + 1;
     }
 };
-
+// 可能下面一种好理解一些
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if (!root) return 0;
+        if (!root->left)  // root左子树不存在而且root不是叶子结点，只能去求右子树中找
+            return minDepth(root->right) + 1;
+        if (!root->right) // root右子树不存在而且root不是叶子结点，只能去左子树寻找
+            return minDepth(root->left) + 1;
+        return min(minDepth(root->left), minDepth(root->right)) + 1;
+    }
+};
 /* 一些总结 */
-// 1. 这个解法我还没有看懂
 
