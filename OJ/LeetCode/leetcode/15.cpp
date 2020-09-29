@@ -53,22 +53,22 @@ public:
             //
             if (k > 0 && nums[k] == nums[k- 1]) continue;
             int target = 0 - nums[k];
-            int i = k + 1, j = nums.size() - 1;
-            while (i < j)
+            int l = k + 1, r = nums.size() - 1;
+            while (l < r)
             {
-                if (nums[i] + nums[j] == target)
+                if (nums[l] + nums[r] == target)
                 {
-                    res.push_back({nums[k], nums[i], nums[j]});
-                    while (i < j && nums[i] == nums[j])  // 避免重复情况
-                        i++;
-                    while (j > i && nums[j] == nums[j-1]) // 避免重复情况
-                        j--;
-                    i++, j--;
+                    res.push_back({nums[k], nums[l], nums[r]});
+                    while (l < r && nums[l] == nums[r])  // 避免重复情况
+                        l++;
+                    while (r > l && nums[r] == nums[r-1]) // 避免重复情况
+                        r--;
+                    l++, r--;
                 }
-                else if (nums[i] + nums[j] < target)
-                    i++;
+                else if (nums[l] + nums[r] < target)
+                    l++;
                 else
-                    j--;
+                    r--;
             }
             
         }
