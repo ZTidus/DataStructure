@@ -9,65 +9,78 @@ using namespace std;
 /* 题目信息 */
 /*
  *15. 3Sum
+
+Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+
+Notice that the solution set must not contain duplicate triplets.
+
+ 
+
+Example 1:
+
+Input: nums = [-1,0,1,2,-1,-4]
+Output: [[-1,-1,2],[-1,0,1]]
+Example 2:
+
+Input: nums = []
+Output: []
+Example 3:
+
+Input: nums = [0]
+Output: []
+ 
+
+Constraints:
+
+0 <= nums.length <= 3000
+-105 <= nums[i] <= 105
  */
 
 /* my solution */
 
 
 /* better solution */
-// Time Limit Exceeded
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         vector<vector<int>> res;
-        int n = nums.size();
-        if (n < 3) return res;
-        // sort
         sort(nums.begin(), nums.end());
+        if (nums.empty() || nums.back() < 0 || nums.front() > 0)
+            return res;
         
-        for (int i = 0; i < n; i++)
+        for (int k = 0; k < nums.size(); k++)
         {
-            // because nums is sorted, so if nums[0] > 0, the elements in the array are all positive, sum won't be 0.
-            const int element = nums[i];
-            if (element > 0) break;
-            int L = i + 1, R = n - 1;
-            while (L < R)
+            //
+            if (k > 0 && nums[k] == nums[k- 1]) continue;
+            int target = 0 - nums[k];
+            int i = k + 1, j = nums.size() - 1;
+            while (i < j)
             {
-                const int sum = element + nums[L] + nums[R];
-                if (sum == 0)
+                if (nums[i] + nums[j] == target)
                 {
-                    vector<int> temp{element, nums[L], nums[R]};
-                    res.push_back(temp);
-                    //res.push_back({});
-                    while (L < R && nums[L] == nums[L+1])
-                        L++;
-                    while (L < R && nums[R] == nums[R-1])
-                        R--;
+                    res.push_back({nums[k], nums[i], nums[j]});
+                    while (i < j && nums[i] == nums[j])  // 避免重复情况
+                        i++;
+                    while (j > i && nums[j] == nums[j-1]) // 避免重复情况
+                        j--;
+                    i++, j--;
                 }
-                else if (sum < 0)
-                {
-                    while (L < R && nums[L] == nums[L+1])
-                        L++;
-                }
+                else if (nums[i] + nums[j] < target)
+                    i++;
                 else
-                {
-                    while (L < R && nums[R] == nums[R-1])
-                        R--;
-                }
+                    j--;
             }
-            while (nums[i] == nums[i+1])
-                i++;
+            
         }
         
         return res;
     }
 };
-
 /* 一些总结 */
-// 1. 题意: 
+// 1. 题意: 求在数组中三个数之和为给定值的组合。
 //
 // 需要注意的点: 
-// 1. 
-// 2. 
+// 1. 求三数之和转变为求两数之和。
+// 2. 先选择一个数，在去求另外两个数。
 // 3. 
 
