@@ -35,6 +35,15 @@ FROM: geeksforgeeks
 
 ## 线性结构
 
+### 最基础的数据结构 - 数组
+
+#### 数组基本操作
+
+- insert: 在指定位置插入元素
+- get: 返回指定位置元素
+- delete: 删除指定位置元素
+- size: 获得数组元素数量
+
 ### 1. 线性表
 
 由同类型`数据元素`构成`有序序列`的线性结构。
@@ -1448,6 +1457,45 @@ int findFather(int x) {
 
 
 #### 4.7 堆(跳过)
+
+1. priority queue
+
+使用stl中的`priority_queue`, 默认是大顶堆。
+小顶堆定义: `priority_queue<int, vector<int>, greater<int> > q;`
+
+```c++
+#include <iostream>
+#include <stdio.h>
+#include <cstdio>
+#include <vector>
+#include <algorithm>
+#include "dbg.h"
+#include <queue>
+using namespace std;
+
+
+/* 
+ * pair的比较，先比较第一个元素，第一个相等再比较第二个。
+ *
+ */
+
+int main(int argc, char *argv[])
+{
+    priority_queue<pair<int, int> > a;
+    pair<int, int> b(1, 2);
+    pair<int, int> c(1, 3);
+    pair<int, int> d(2, 5);
+    a.push(d);
+    a.push(c);
+    a.push(b);
+    while (!a.empty())
+    {
+        cout << a.top().first << ' ' << a.top().second << '\n';
+        a.pop();
+    }
+    return 0;
+}
+```
 
 ##### 4.7.1 定义与基本操作
 
