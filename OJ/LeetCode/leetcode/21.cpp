@@ -18,7 +18,7 @@ Output: 1->1->2->3->4->4
 // none
 
 /* better solution */
-// 1
+// solution 1:
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -64,6 +64,28 @@ public:
         return res->next;
     }
 };
+
+// solution 1.1 
+// 第一种方法的精简
+// 每次都将指针指向值较小的结点
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* dummy = new ListNode(-1);
+        ListNode* tail = dummy;
+        while (l1 && l2)
+        {
+            if (l1->val > l2->val) swap(l1, l2);
+            tail->next = l1;
+            l1 = l1->next;
+            tail = tail->next;
+        }
+        
+        tail->next = l1 ? l1 : l2;
+        return dummy->next;
+    }
+};
+
 
 // 2 recursive
 class Solution {
