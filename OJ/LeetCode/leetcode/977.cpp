@@ -28,6 +28,7 @@ A is sorted in non-decreasing order.
  */
 
 /* my solution */
+// 132ms - O(nlogn)
 class Solution {
 public:
     vector<int> sortedSquares(vector<int>& A) {
@@ -40,7 +41,34 @@ public:
         return A;
     }
 };
+
 /* better solution */
+// 48ms - O(n)
+// 双指针
+// 一个指针在数组最坐，一个在最右，当左指针所指元素值的平方大于右指针所指元素值的平方，将左指针元素值平方放入新开的大小为n的数组的最后一个位置，反之亦然。
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& A) {
+        int n = A.size();
+        vector<int> res(n);
+        for (int i = 0, j = n - 1, pos = n - 1; i <= j;)
+        {
+            if (A[i] * A[i] > A[j] * A[j])
+            {
+                res[pos] = A[i] * A[i];
+                i++;
+            }
+            else
+            {
+                res[pos] = A[j] * A[j];
+                j--;
+            }
+            pos--;
+        }
+        return res;
+
+    }
+};
 // 讨论区有更好的解，但是我没有看懂
 /* 一些总结 */
 
