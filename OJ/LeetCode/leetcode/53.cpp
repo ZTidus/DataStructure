@@ -90,6 +90,29 @@ public:
         return maxSum;
     }
 };
+
+// solution-2
+// 下面这种解法比上一种解法更加容易理解。
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int curSum = 0, maxSum = nums[0];
+        for (int i = 0; i < nums.size(); i++)
+        {
+            // 如果当前和小于等于0, 则放弃当前和，重新将当前元素值赋值给当前和。
+            // 及时止损。
+            if (curSum <= 0)
+                curSum = nums[i];
+            else
+                curSum += nums[i];
+            // 更新当前最大和。
+            maxSum = max(maxSum, curSum);
+        }
+        return maxSum;
+
+    }
+};
 // 1. 求出所有元素的前缀和
 
 /* 一些总结 */
