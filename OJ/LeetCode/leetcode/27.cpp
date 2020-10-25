@@ -78,8 +78,27 @@ public:
 };
 
 /* better solution */
-// solution-x, ms, defeat %
+// solution-2, 4ms, defeat %
+// two pointers
+// 当nums[r] != val时，r++;
+// 当nums[r] == val时，l++, r++;
+// 长度为l
 
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int l = 0;
+        for (int r = 0; r < nums.size(); r++)
+        {
+            if (nums[r] != val)
+            {
+                nums[l] = nums[r];
+                l++;
+            }
+        }
+        return l;
+    }
+};
 
 /* 一些总结 */
 // 1. 题意: 给定数字val和数组，去除数组中和val相等的数字。
