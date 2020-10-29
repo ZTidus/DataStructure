@@ -40,12 +40,12 @@ public:
             if (!l2)
             {
                 head->next = l1;
-                break;
+                break; // 注意这里的break不要忘记!!!
             } 
             else if (!l1)
             {
                 head->next = l2;
-                break;
+                break;// 注意这里的break不要忘记!!!
             }
             
             else if (l1->val < l2->val)
