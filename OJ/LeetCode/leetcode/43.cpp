@@ -64,7 +64,7 @@ public:
         
         // vector -> string
         string res = "";
-        while (i < num.size()) res.push_back(num[i++] + '0');
+        while (i < num.size()) res.push_back(num[i++] + '0'); // 注意这里的i++,不要掉了
         return res;
         
     }
