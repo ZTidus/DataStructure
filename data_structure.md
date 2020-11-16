@@ -1900,6 +1900,9 @@ Load Factor(负载系数) = Total number of items stored / Size of the array
 
 2. chaining 
 
+## In-place algorithm(原地算法)
+空间复杂度要求O(1)
+
 
 
 
