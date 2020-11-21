@@ -1,69 +1,102 @@
-// 1480. Running Sum of 1d Array
-// 
-// Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
-// 
-// Return the running sum of nums.
-// 
-// 
-// 
-// Example 1:
-// 
-// Input: nums = [1,2,3,4]
-// Output: [1,3,6,10]
-// Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
-// Example 2:
-// 
-// Input: nums = [1,1,1,1,1]
-// Output: [1,2,3,4,5]
-// Explanation: Running sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].
-// Example 3:
-// 
-// Input: nums = [3,1,2,10,1]
-// Output: [3,4,6,16,17]
-// 
-// 
-// Constraints:
-// 
-// 1 <= nums.length <= 1000
-// -10^6 <= nums[i] <= 10^6
-//
+#include <iostream>
+#include <stdio.h>
 #include <cstdio>
 #include <vector>
+#include <algorithm>
+#include <map>
+#include <string>
+#include <set>
+#include <stack>
+#include <cmath>
 using namespace std;
 
+/* Leetcode */
+/* Type: string */
+/* 题目信息 */
+/*
+ *1408. String Matching in an Array
+Given an array of string words. Return all strings in words which is substring of another word in any order. 
+
+String words[i] is substring of words[j], if can be obtained removing some characters to left and/or right side of words[j].
+
+ 
+
+Example 1:
+
+Input: words = ["mass","as","hero","superhero"]
+Output: ["as","hero"]
+Explanation: "as" is substring of "mass" and "hero" is substring of "superhero".
+["hero","as"] is also a valid answer.
+Example 2:
+
+Input: words = ["leetcode","et","code"]
+Output: ["et","code"]
+Explanation: "et", "code" are substring of "leetcode".
+Example 3:
+
+Input: words = ["blue","green","bu"]
+Output: []
+ 
+
+Constraints:
+
+1 <= words.length <= 100
+1 <= words[i].length <= 30
+words[i] contains only lowercase English letters.
+It's guaranteed that words[i] will be unique.
+ */
+
+/* my solution */
+// solution-1, 4ms, defeat 95.77%
 class Solution {
 public:
-    vector<int> runningSum(vector<int>& nums) {
-        int len = nums.size();
-        int sum[len];
-        //sum[len] = {0};
-        int whole = 0;
-        for (int i = 0; i < len; i++) {
-            sum[i] = nums[i] + whole;
-            whole += nums[i];
+    vector<string> stringMatching(vector<string>& words) {
+        vector<string> res;
+        set<string> st;
+        
+        for (int i = 0; i < words.size(); i++)
+        {
+            for (int j = 0; j < words.size(); j++)
+            {
+                if (words[i] != words[j])
+                {
+                    if (words[i].find(words[j]) != string::npos)
+                    {
+                        st.insert(words[j]);
+                    }
+                }
+            }
         }
-        for (int i = 0; i < len; i++) {
-            nums[i] = sum[i];
+        
+        for (string s : st)
+        {
+            res.push_back(s);
         }
-        return nums;
+        return res;
+        
     }
 };
 
+/* better solution */
+// solution-x, ms, defeat %
 
-// 1.
-// 这是从新算了一个新的数组，将每次算的sum存入新数组中，再循环将对应的数字赋值给nums
+
+/* 一些总结 */
+// 1. 题意: 给定一个字符串数组，找出其中字符串为其他字符串子串的字符串。
 //
+// 需要注意的点: 
+// 1. str.find(str2): 若str2为str的子串，返回str2在str中的下标.
+// 2. 注意：有可能之串会重复，需要消除掉重复的字符串。
+// 3. 
 
-// better choice
+/*
+ * main test
+ */
 
-//class Solution {
-//public:
-//    vector<int> runningSum(vector<int>& nums) {
-//        int i = 1;
-//        while (i < nums.size()) {
-//            nums[i] += nums[i-1];
-//            i++;
-//        }
-//        return nums;
-//    }
-//};
+int main(void)
+{
+    Solution solution;
+
+    return 0;
+}
+
