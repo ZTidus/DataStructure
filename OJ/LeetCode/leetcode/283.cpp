@@ -24,6 +24,7 @@ Minimize the total number of operations.
 
 
 /* better solution */
+// 下边这种做法并没有用到in-place算法，只是另外用了一个数组，虽然通过，但并不适合。
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
@@ -57,6 +58,26 @@ public:
     }
 };
 
+
+// 符合题意的in-place解法 better
+// ✓
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int lastNonZeroFoundAt = 0;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            // 当前元素不为0,则将当前元素值赋值给最后的0元素位置
+            if (nums[i] != 0)
+                nums[lastNonZeroFoundAt++] = nums[i];
+        }
+        
+        for (int i = lastNonZeroFoundAt; i < nums.size(); i++)
+        {
+            nums[i] = 0;
+        }
+    }
+};
 /* 一些总结 */
 // 1. 题意: 
 //
