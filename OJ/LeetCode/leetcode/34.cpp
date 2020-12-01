@@ -106,7 +106,7 @@ private:
 //
 // 需要注意的点: 
 // 1. 第二种方法暂时还写不出来，特别是这个left置为bool类型的写法。
-// 2. 
+// 2. 二分查找很不简单!!!细节很难把握，思路很清晰
 // 3. 
 
 // a comment: Usually when you are given a sorted data structure and are asked
