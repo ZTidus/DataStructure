@@ -6,4 +6,6 @@
 
 ### 学习资源
 
-- [中国大学MOOC网课](https://www.icourse163.org/course/ZJU-93001?tid=1002019005)
+- [数据结构可视化][1]
+
+[1]: https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
