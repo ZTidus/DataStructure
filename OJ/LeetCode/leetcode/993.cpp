@@ -42,6 +42,7 @@ Output: false
 // none
 
 // better solution
+// 1
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -84,6 +85,49 @@ public:
             return true;
         
         return false;
+    }
+};
+
+// 2 ✓
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isCousins(TreeNode* root, int x, int y) {
+        preorder(root, x, y, nullptr, 0);
+        return px_ != py_ && dx_ == dy_;
+    }
+private:
+    TreeNode* px_; // x's parent
+    TreeNode* py_;
+    int dx_; // x's depth
+    int dy_;
+    
+    void preorder(TreeNode* root, int x, int y, TreeNode* p, int d)
+    {
+        if (!root) return;
+        if (root->val == x)
+        {
+            px_ = p;
+            dx_ = d;
+        }
+        if (root->val == y)
+        {
+            py_ = p;
+            dy_ = d;
+        }
+        
+        preorder(root->left, x, y, root, d + 1);
+        preorder(root->right, x, y, root, d + 1);
     }
 };
 
