@@ -14,6 +14,10 @@ while(i<=n)     //可假设运行x次
 ```
 ![Image](img/complexity-eg1.png)
 
+#### Time complexity of a computer program
+
+link: https://www.youtube.com/watch?v=V42FBiohc6c&list=PL2_aWCzGMAwI9HK8YPVBjElbLbI3ufctn&index=2&t=0s
+
 ## 四类算法
 
 - 贪心算法: 只考虑当前最优，不考虑全局最优，这种方法叫做贪心
