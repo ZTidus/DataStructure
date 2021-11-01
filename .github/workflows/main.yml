@@ -36,7 +36,9 @@ jobs:
           bash
           if [ -d "OJ/LeetCode/leetcode/problems" ]; then
             cd OJ/LeetCode/leetcode/problems
-            # create a file
+            # must create a new file
+            [ -f $file_name ] && rm $file_name
+
             touch $file_name
 
             # sort the files after finding all the cpp files
