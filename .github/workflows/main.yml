@@ -55,5 +55,12 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: push the generated file into repo
         run: |
-          git push origin dev
-          [ $? -eq 0 ] && echo "Push successfully."
+          git add .
+          if test -z "$(git diff --cached)"; then
+            echo "no generated files."
+          else
+            git status
+            git commit -m "[action bot] problem.md udpated"
+            git push origin dev
+            [ $? -eq 0 ] && echo "Push successfully."
+          fi
