@@ -30,18 +30,24 @@ jobs:
         uses: actions/checkout@v2
 
       - name: generate file
+        env:
+          file_name: "problems.md"
         run: |
+          bash
           if [ -d "OJ/LeetCode/leetcode/problems" ]; then
             cd OJ/LeetCode/leetcode/problems
             # create a file
-            touch problems.md
+            touch $file_name
+
             # sort the files after finding all the cpp files
             for cpp_file in $(find . -name '*.cpp' | sort)
             do
-              echo "- $(basename $cpp_file .cpp)\n" >> problems.md # add cpp file's simple name
-              echo "\`\`\`cpp" >> problems.md
-              cat $cpp_file >> problems.md # add cpp file's content
-              echo "\`\`\`\n" >> problems.md
+            echo "- $(basename $cpp_file .cpp)" >> $file_name # add cpp file's simple name
+            echo "\n"
+            echo "\`\`\`cpp" >> $file_name
+            cat $cpp_file >> $file_name # add cpp file's content
+            echo "\`\`\`" >> $file_name
+            echo "\n"
             done
           else
             echo "problems文件夹不存在！"
