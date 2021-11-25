@@ -53,8 +53,10 @@ jobs:
         env:
           file_name: "problems.md"
         run: |
-          cd $MASTER_PATH/docs
-          gitbook build . $PAGES_PATH/docs
+          echo "current dir: " $(pwd)
+          echo "files: " $(ls)
+          cd $MASTER_PATH/.git/docs
+          gitbook build . ~/$PAGES_PATH/.git/docs
           && echo "build completed!"
 
       - name: set AZ
@@ -72,7 +74,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: push the generated file into repo
         run: |
-          cd ~/$PAGES_PATH/
+          cd ~/$PAGES_PATH/.git/
           git add .
           if test -z "$(git diff --cached)"; then
             echo "no generated files."
