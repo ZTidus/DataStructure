@@ -31,12 +31,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: 'dev'
-          path: $MASTER_PATH
+          path: 'dev-branch'
       - name: Checkout gh-pages branch
         uses: actions/checkout@v2
         with:
           ref: 'gh-pages'
-          path: $PAGES_PATH
+          path: 'pages-branch'
 
       - name: Setup [node] env
         uses: actions/setup-node@v1
