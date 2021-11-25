@@ -1,8 +1,17 @@
 {
-    "plugins": [
-         "-lunr", 
-		 "-search", 
-		 "search-pro",
-		 "katex"
-    ]
+  "plugins": [
+    "-lunr",
+    "-search",
+    "search-pro",
+    "katex",
+    "anchors",
+    "splitter",
+    "github",
+    "expandable-chapters-small"
+  ],
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/ONGOING-Z/Learn-Algorithm-and-DataStructure/"
+    }
+  }
 }
