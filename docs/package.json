@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "gitbook serve",
+    "build": "gitbook build . ./docs",
+    "pdf": "gitbook pdf . ./docs/book.pdf",
+    "epub": "gitbook epub . ./docs/book.epub",
+    "mobi": "gitbook mobi . ./docs/book.mobi"
   },
   "author": "",
   "license": "ISC",

@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Generate leetcode problem file
+name: Gitbook generate
 
 # Controls when the workflow will run
 on:
@@ -8,12 +8,14 @@ on:
   push:
     branches: [ dev ]
     paths:
-      - 'OJ/LeetCode/leetcode/problems'
+      - 'docs/'
       - '.github/workflows/main.yml'
 
 # 系统环境变量
 env:
   AREA: Asia/Shanghai
+  MASTER_PATH: 'dev-branch'
+  PAGES_PATH: 'pages-branch'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,40 +23,39 @@ jobs:
   docs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    name: build up document and deploy
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout source
+      - name: Checkout dev branch
         uses: actions/checkout@v2
+        with:
+          - ref: 'dev'
+          - path: $MASTER_PATH
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          - ref: 'gh-pages'
+          - path: $PAGES_PATH
 
+      - name: Setup [node] env
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+
+      - name: Setup Deploy env
+        run: |
+          npm install gitbook -g
+          echo "gitbook version: " $(gitbook -V)
+          echo "start install gitbook plugins..."
+          gitbook install
       - name: generate file
         env:
           file_name: "problems.md"
         run: |
-          bash
-          if [ -d "OJ/LeetCode/leetcode/problems" ]; then
-            cd OJ/LeetCode/leetcode/problems
-            # must create a new file
-            [ -f $file_name ] && rm $file_name
-
-            touch $file_name
-
-            # sort the files after finding all the cpp files
-            for cpp_file in $(find . -name '*.cpp' | sort)
-            do
-            echo "- $(basename $cpp_file .cpp)" >> $file_name # add cpp file's simple name
-            echo "\n"
-            echo "\`\`\`cpp" >> $file_name
-            cat $cpp_file >> $file_name # add cpp file's content
-            echo "\`\`\`" >> $file_name
-            echo "\n"
-            done
-          else
-            echo "problems文件夹不存在！"
-            exit 2
-          fi
+          cd $MASTER_PATH/docs
+          gitbook build . $PAGES_PATH/docs
+          && echo "build completed!"
 
       - name: set AZ
         run: |
@@ -63,7 +64,7 @@ jobs:
       - name: Setup git config env
         env:
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
-          USER_NAME: ongoing-z
+          USER_NAME: github-actions[bot]
         run: |
           git config --global user.name $USER_NAME
           git config --global user.email $USER_EMAIL
@@ -71,12 +72,13 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: push the generated file into repo
         run: |
+          cd ~/$PAGES_PATH/
           git add .
           if test -z "$(git diff --cached)"; then
             echo "no generated files."
           else
             git status
-            git commit -m "[action bot] problem.md udpated"
-            git push origin dev
+            git commit -m "[github actions] updated"
+            git push origin gh-pages
             [ $? -eq 0 ] && echo "Push successfully."
           fi
