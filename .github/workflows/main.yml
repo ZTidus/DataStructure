@@ -50,13 +50,12 @@ jobs:
           echo "start install gitbook plugins..."
           gitbook install
       - name: generate file
-        env:
-          file_name: "problems.md"
         run: |
           echo "current dir: " $(pwd)
+          tree . -L 2
           echo "files: " $(ls)
-          cd $MASTER_PATH/.git/docs
-          gitbook build . ~/$PAGES_PATH/.git/docs
+          cd $MASTER_PATH/docs
+          gitbook build . ~/$PAGES_PATH/docs
           && echo "build completed!"
 
       - name: set AZ
