@@ -47,14 +47,14 @@ jobs:
         run: |
           npm install -g gitbook-cli
           echo "gitbook version: " $(gitbook -V)
-          echo "start install gitbook plugins..."
-          gitbook install
       - name: generate file
         run: |
           echo "current dir: " $(pwd)
           tree . -L 2
           echo "files: " $(ls)
           cd $MASTER_PATH/docs
+          echo "start install gitbook plugins..."
+          gitbook install
           gitbook build . ~/$PAGES_PATH/docs
           && echo "build completed!"
 
