@@ -65,7 +65,7 @@ jobs:
 
       - name: Setup git config env
         env:
-          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_EMAIL: github-actions[bot]@users.noreply.github.com
           USER_NAME: github-actions[bot]
         run: |
           git config --global user.name $USER_NAME
@@ -74,7 +74,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: push the generated file into repo
         run: |
-          cd ~/$PAGES_PATH/.git/
+          cd ~/$PAGES_PATH/
           git add .
           if test -z "$(git diff --cached)"; then
             echo "no generated files."
