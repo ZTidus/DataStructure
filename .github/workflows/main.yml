@@ -45,7 +45,7 @@ jobs:
 
       - name: Setup Deploy env
         run: |
-          npm install gitbook -g
+          npm install -g gitbook-cli
           echo "gitbook version: " $(gitbook -V)
           echo "start install gitbook plugins..."
           gitbook install
