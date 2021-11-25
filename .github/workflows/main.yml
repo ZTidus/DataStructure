@@ -52,12 +52,12 @@ jobs:
           echo "current dir: " $(pwd)
           tree . -L 2
           echo "files: " $(ls)
-          cd $MASTER_PATH/docs
+          cd ${{ env.MASTER_PATH }}/docs
           echo "start install gitbook plugins..."
           gitbook install
-          gitbook build . ~/$PAGES_PATH/docs \
+          gitbook build . ~/${{ env.PAGES_PATH }}/docs \
           && echo "build completed!"
-          tree ~/$PAGES_PATH/docs -L 2
+          tree ~/${{ env.PAGES_PATH }}/docs -L 2
 
       - name: set AZ
         run: |
