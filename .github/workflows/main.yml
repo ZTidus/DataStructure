@@ -75,8 +75,9 @@ jobs:
       - name: push the generated file into repo
         run: |
           pwd
-          cd ~/$PAGES_PATH/
+          cd ${{ env.PAGES_PATH }}/
           pwd
+          git status
           git add .
           if test -z "$(git diff --cached)"; then
             echo "no generated files."
