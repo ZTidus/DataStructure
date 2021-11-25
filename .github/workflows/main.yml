@@ -30,18 +30,18 @@ jobs:
       - name: Checkout dev branch
         uses: actions/checkout@v2
         with:
-          - ref: 'dev'
-          - path: $MASTER_PATH
+          ref: 'dev'
+          path: $MASTER_PATH
       - name: Checkout gh-pages branch
         uses: actions/checkout@v2
         with:
-          - ref: 'gh-pages'
-          - path: $PAGES_PATH
+          ref: 'gh-pages'
+          path: $PAGES_PATH
 
       - name: Setup [node] env
         uses: actions/setup-node@v1
         with:
-          node-version: '10'
+          node-version: '10.x'
 
       - name: Setup Deploy env
         run: |
