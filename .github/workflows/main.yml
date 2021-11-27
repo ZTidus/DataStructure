@@ -8,7 +8,7 @@ on:
   push:
     branches: [ dev ]
     paths:
-      - 'docs/'
+      - 'docs/**'
       - '.github/workflows/main.yml'
 
 # 系统环境变量
