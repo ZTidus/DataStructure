@@ -65,7 +65,7 @@ jobs:
 
       - name: Setup git config env
         env:
-          USER_EMAIL: github-actions[bot]@users.noreply.github.com
+          USER_EMAIL: ${GITHUB_ACTOR}@users.noreply.github.com
           USER_NAME: github-actions[bot]
         run: |
           git config --global user.name $USER_NAME
@@ -83,7 +83,7 @@ jobs:
             echo "no generated files."
           else
             git status
-            git commit -m "[github actions] updated"
+            git commit -m "[github actions] updated for $GITHUB_SHA"
             git push origin gh-pages
             [ $? -eq 0 ] && echo "Push successfully."
           fi
