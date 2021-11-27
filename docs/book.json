@@ -8,11 +8,16 @@
     "anchors",
     "splitter",
     "github",
-    "expandable-chapters-small"
+    "expandable-chapters-small",
+    "hide-element",
+    "popup"
   ],
   "pluginsConfig": {
     "github": {
       "url": "https://github.com/ONGOING-Z/Learn-Algorithm-and-DataStructure/"
+    },
+    "hide-element": {
+      "element": [".gitbook-link"]
     }
   }
 }
