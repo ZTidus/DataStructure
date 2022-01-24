@@ -1,0 +1,388 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>26 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="589.md" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">前言</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">test</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" >
+            
+                <span>
+            
+                    
+                    题目
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="2.1.1" data-path="26.html">
+            
+                <a href="26.html">
+            
+                    
+                    26
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="589.md">
+            
+                <span>
+            
+                    
+                    589
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="1290.md">
+            
+                <span>
+            
+                    
+                    1290
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >26</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>/<em> Type: array </em>/</p>
+<h2 id="26-remove-duplicates-from-sorted-array"><a name="26-remove-duplicates-from-sorted-array" class="plugin-anchor" href="#26-remove-duplicates-from-sorted-array"><i class="fa fa-link" aria-hidden="true"></i></a>26. Remove Duplicates from Sorted Array</h2>
+<p>Given a sorted array nums, remove the duplicates in-place such that each element appears only once and returns the new length.</p>
+<p>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.</p>
+<p>Clarification:</p>
+<p>Confused why the returned value is an integer but your answer is an array?</p>
+<p>Note that the input array is passed in by reference, which means a modification to the input array will be known to the caller as well.</p>
+<p>Internally you can think of this:</p>
+<p>// nums is passed in by reference. (i.e., without making a copy)
+int len = removeDuplicates(nums);</p>
+<p>// any modification to nums in your function would be known by the caller.
+// using the length returned by your function, it prints the first len elements.
+for (int i = 0; i &lt; len; i++) {
+print(nums[i]);
+}</p>
+<p>Example 1:</p>
+<p>Input: nums = [1,1,2]
+Output: 2, nums = [1,2]
+Explanation: Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively. It doesn&apos;t matter what you leave beyond the returned length.
+Example 2:</p>
+<p>Input: nums = [0,0,1,1,1,2,2,3,3,4]
+Output: 5, nums = [0,1,2,3,4]
+Explanation: Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively. It doesn&apos;t matter what values are set beyond the returned length.</p>
+<p>Constraints:</p>
+<p>0 &lt;= nums.length &lt;= 3 <em> 104
+-104 &lt;= nums[i] &lt;= 104
+nums is sorted in ascending order.
+</em>/</p>
+<pre><code class="lang-c++"><span class="hljs-comment">/* my solution */</span>
+<span class="hljs-comment">// solution-x, ms, defeat %</span>
+
+
+<span class="hljs-comment">/* better solution */</span>
+<span class="hljs-comment">// solution-1, 68ms, defeat 19.75%</span>
+<span class="hljs-comment">// &#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x4FDD;&#x5B58;&#x7ED3;&#x679C;&#xFF0C;&#x6700;&#x540E;&#x518D;&#x8D4B;&#x503C;&#x5230;&#x539F;&#x6570;&#x7EC4;&#x3002;</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">class</span> Solution {
+<span class="hljs-keyword">public</span>:
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">removeDuplicates</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; temp;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.size(); i++)
+{
+<span class="hljs-keyword">if</span> (temp.empty())
+{
+temp.push_back(nums[i]);
+<span class="hljs-keyword">continue</span>;
+}
+
+            <span class="hljs-keyword">if</span> (temp.back() == nums[i])
+            {
+                <span class="hljs-keyword">continue</span>;
+            }
+            <span class="hljs-keyword">else</span>
+            {
+                temp.push_back(nums[i]);
+                <span class="hljs-built_in">cout</span> &lt;&lt; nums[i] &lt;&lt; <span class="hljs-built_in">endl</span>;
+            }
+        }
+        nums.erase(nums.begin(), nums.end());
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; temp.size(); i++)
+            nums.push_back(temp[i]);
+        <span class="hljs-keyword">return</span> nums.size();
+    }
+};
+</code></pre>
+<ol>
+<li>&#x9898;&#x610F;: &#x53BB;&#x9664;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x91CD;&#x590D;&#x5143;&#x7D20;&#xFF0C;&#x4FDD;&#x6301;&#x5143;&#x7D20;&#x7684;&#x552F;&#x4E00;&#x3002;</li>
+</ol>
+
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="589.md" class="navigation navigation-next navigation-unique" aria-label="Next page: 589">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"26","level":"2.1.1","depth":2,"next":{"title":"589","level":"2.1.2","depth":2,"path":"589.md","ref":"589.md","articles":[]},"previous":{"title":"题目","level":"2.1","depth":1,"ref":"","articles":[{"title":"26","level":"2.1.1","depth":2,"path":"26.md","ref":"26.md","articles":[]},{"title":"589","level":"2.1.2","depth":2,"path":"589.md","ref":"589.md","articles":[]},{"title":"1290","level":"2.1.3","depth":2,"path":"1290.md","ref":"1290.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","katex","anchors","splitter","github","expandable-chapters-small","hide-element","popup"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ONGOING-Z/Learn-Algorithm-and-DataStructure/"},"splitter":{},"search-pro":{},"popup":{},"hide-element":{"element":[".gitbook-link"]},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"26.md","mtime":"2022-01-24T13:18:14.054Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-01-24T13:19:08.886Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-hide-element/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
