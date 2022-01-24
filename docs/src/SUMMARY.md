@@ -3,8 +3,12 @@
 ## 前言
 * [Introduction](README.md)
 
-## test
-* 题目
-  * [26](26.md)
-  * [589](589.md)
-  * [1290](1290.md)
+## 分类
+
+* [数组](array/array.md)
+  * [26](array/26.md)
+* [字符串](string/string.md)
+* [棧](stack/stack.md)
+* [队列](stack/stack.md)
+* [树](tree/tree.md)
+* [图](graph/graph.md)
