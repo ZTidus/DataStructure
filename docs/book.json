@@ -10,7 +10,8 @@
     "github",
     "expandable-chapters-small",
     "hide-element",
-    "popup"
+    "popup",
+    "code"
   ],
   "pluginsConfig": {
     "github": {
