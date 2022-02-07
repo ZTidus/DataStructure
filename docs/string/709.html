@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>数组 · GitBook</title>
+        <title>709 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -77,10 +77,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="26.html" />
+    <link rel="next" href="../stack/stack.html" />
     
     
-    <link rel="prev" href="../" />
+    <link rel="prev" href="67.html" />
     
 
     </head>
@@ -131,9 +131,9 @@
         
         
     
-        <li class="chapter active" data-level="2.1" data-path="array.html">
+        <li class="chapter " data-level="2.1" data-path="../array/array.html">
             
-                <a href="array.html">
+                <a href="../array/array.html">
             
                     
                     数组
@@ -145,9 +145,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.1" data-path="26.html">
+        <li class="chapter " data-level="2.1.1" data-path="../array/26.html">
             
-                <a href="26.html">
+                <a href="../array/26.html">
             
                     
                     26
@@ -163,9 +163,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="../string/string.html">
+        <li class="chapter " data-level="2.2" data-path="string.html">
             
-                <a href="../string/string.html">
+                <a href="string.html">
             
                     
                     字符串
@@ -177,9 +177,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.2.1" data-path="../string/67.html">
+        <li class="chapter " data-level="2.2.1" data-path="67.html">
             
-                <a href="../string/67.html">
+                <a href="67.html">
             
                     
                     67
@@ -190,9 +190,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.2" data-path="../string/709.html">
+        <li class="chapter active" data-level="2.2.2" data-path="709.html">
             
-                <a href="../string/709.html">
+                <a href="709.html">
             
                     
                     709
@@ -290,7 +290,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >数组</a>
+        <a href=".." >709</a>
     </h1>
 </div>
 
@@ -305,7 +305,51 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="array"><a name="array" class="plugin-anchor" href="#array"><i class="fa fa-link" aria-hidden="true"></i></a>Array</h1>
+                                <h1 id="709---to-lower-case"><a name="709---to-lower-case" class="plugin-anchor" href="#709---to-lower-case"><i class="fa fa-link" aria-hidden="true"></i></a>709 - To lower case</h1>
+<p>Given a string s, return the string after replacing every uppercase letter with the same lowercase letter.</p>
+<p>Example 1:</p>
+<p>Input: s = &quot;Hello&quot;
+Output: &quot;hello&quot;
+Example 2:</p>
+<p>Input: s = &quot;here&quot;
+Output: &quot;here&quot;
+Example 3:</p>
+<p>Input: s = &quot;LOVELY&quot;
+Output: &quot;lovely&quot;</p>
+<p>Constraints:</p>
+<p>1 &lt;= s.length &lt;= 100
+s consists of printable ASCII characters.</p>
+<ul>
+<li>use api<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toLowerCase</span><span class="hljs-params">(String s)</span> </span>{
+      <span class="hljs-keyword">return</span> s.toLowerCase();
+  }
+}
+</code></pre>
+</li>
+<li><p>&#x81EA;&#x884C;&#x5B9E;&#x73B0;</p>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toLowerCase</span><span class="hljs-params">(String s)</span> </span>{
+      StringBuilder res = <span class="hljs-keyword">new</span> StringBuilder();
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.length(); i++) {
+          <span class="hljs-keyword">char</span> ch = s.charAt(i);
+          <span class="hljs-keyword">if</span> (ch &gt;= <span class="hljs-number">65</span> &amp;&amp; ch &lt; <span class="hljs-number">91</span>) {
+              ch = (<span class="hljs-keyword">char</span>)(ch + <span class="hljs-number">32</span>);
+          }
+          res.append(ch);
+      }
+      <span class="hljs-keyword">return</span> res.toString();
+
+  }
+}
+</code></pre>
+</li>
+</ul>
+<p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;</p>
+<ul>
+<li>[a, z] &#x8303;&#x56F4;&#x662F; [65, 90]</li>
+<li>[A, Z] &#x8303;&#x56F4;&#x662F; [97, 122]</li>
+</ul>
 
 <script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
                                 
@@ -334,12 +378,12 @@
 
             
                 
-                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                <a href="67.html" class="navigation navigation-prev " aria-label="Previous page: 67">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="26.html" class="navigation navigation-next " aria-label="Next page: 26">
+                <a href="../stack/stack.html" class="navigation navigation-next " aria-label="Next page: 棧">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -350,7 +394,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"数组","level":"2.1","depth":1,"next":{"title":"26","level":"2.1.1","depth":2,"path":"array/26.md","ref":"array/26.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","katex","anchors","splitter","github","expandable-chapters-small","hide-element","popup","code"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ONGOING-Z/Learn-Algorithm-and-DataStructure/"},"splitter":{},"popup":{},"code":{"copyButtons":true},"hide-element":{"element":[".gitbook-link"]},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"array/array.md","mtime":"2022-02-07T15:00:07.272Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-07T15:00:54.011Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"709","level":"2.2.2","depth":2,"next":{"title":"棧","level":"2.3","depth":1,"path":"stack/stack.md","ref":"stack/stack.md","articles":[]},"previous":{"title":"67","level":"2.2.1","depth":2,"path":"string/67.md","ref":"string/67.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","katex","anchors","splitter","github","expandable-chapters-small","hide-element","popup","code"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ONGOING-Z/Learn-Algorithm-and-DataStructure/"},"splitter":{},"popup":{},"code":{"copyButtons":true},"hide-element":{"element":[".gitbook-link"]},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"string/709.md","mtime":"2022-02-07T15:00:07.272Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-07T15:00:54.011Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
