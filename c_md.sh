@@ -13,12 +13,18 @@ fi
 echo "
 # "$md_name"
 type:
+difficulty:
 
 ---
 
 ## Problem Info
 
-## Answer
+## Answer - 1
+
+- time:
+- beat %
+
+## Answer - 2
 
 ## Attention
 
