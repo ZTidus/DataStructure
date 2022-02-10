@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>棧 · GitBook</title>
+        <title>796 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -77,10 +77,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="stack.html" />
+    <link rel="next" href="../stack/stack.html" />
     
     
-    <link rel="prev" href="../string/796.html" />
+    <link rel="prev" href="709.html" />
     
 
     </head>
@@ -163,9 +163,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="../string/string.html">
+        <li class="chapter " data-level="2.2" data-path="string.html">
             
-                <a href="../string/string.html">
+                <a href="string.html">
             
                     
                     字符串
@@ -177,9 +177,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.2.1" data-path="../string/67.html">
+        <li class="chapter " data-level="2.2.1" data-path="67.html">
             
-                <a href="../string/67.html">
+                <a href="67.html">
             
                     
                     67
@@ -190,9 +190,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.2" data-path="../string/709.html">
+        <li class="chapter " data-level="2.2.2" data-path="709.html">
             
-                <a href="../string/709.html">
+                <a href="709.html">
             
                     
                     709
@@ -203,9 +203,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.3" data-path="../string/796.html">
+        <li class="chapter active" data-level="2.2.3" data-path="796.html">
             
-                <a href="../string/796.html">
+                <a href="796.html">
             
                     
                     796
@@ -221,9 +221,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3" data-path="stack.html">
+        <li class="chapter " data-level="2.3" data-path="../stack/stack.html">
             
-                <a href="stack.html">
+                <a href="../stack/stack.html">
             
                     
                     棧
@@ -234,9 +234,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.4" data-path="stack.html">
+        <li class="chapter " data-level="2.4" data-path="../stack/stack.html">
             
-                <a href="stack.html">
+                <a href="../stack/stack.html">
             
                     
                     队列
@@ -335,7 +335,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >棧</a>
+        <a href=".." >796</a>
     </h1>
 </div>
 
@@ -350,7 +350,34 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="stack"><a name="stack" class="plugin-anchor" href="#stack"><i class="fa fa-link" aria-hidden="true"></i></a>Stack</h1>
+                                <h1 id="796"><a name="796" class="plugin-anchor" href="#796"><i class="fa fa-link" aria-hidden="true"></i></a>796</h1>
+<p>type: string</p>
+<h2 id="problem-info"><a name="problem-info" class="plugin-anchor" href="#problem-info"><i class="fa fa-link" aria-hidden="true"></i></a>Problem Info</h2>
+<p>Given two strings s and goal, return true if and only if s can become goal after some number of shifts on s.</p>
+<p>A shift on s consists of moving the leftmost character of s to the rightmost position.</p>
+<p>For example, if s = &quot;abcde&quot;, then it will be &quot;bcdea&quot; after one shift.</p>
+<p>Example 1:</p>
+<p>Input: s = &quot;abcde&quot;, goal = &quot;cdeab&quot;
+Output: true
+Example 2:</p>
+<p>Input: s = &quot;abcde&quot;, goal = &quot;abced&quot;
+Output: false</p>
+<p>Constraints:</p>
+<p>1 &lt;= s.length, goal.length &lt;= 100
+s and goal consist of lowercase English letters.</p>
+<h2 id="answer"><a name="answer" class="plugin-anchor" href="#answer"><i class="fa fa-link" aria-hidden="true"></i></a>Answer</h2>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">rotateString</span><span class="hljs-params">(String s, String goal)</span> </span>{
+        <span class="hljs-keyword">if</span> (s.length() != goal.length()) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        <span class="hljs-keyword">return</span> (s + s).contains(goal);
+    }
+}
+</code></pre>
+<h2 id="attention"><a name="attention" class="plugin-anchor" href="#attention"><i class="fa fa-link" aria-hidden="true"></i></a>Attention</h2>
+<ul>
+<li>s + s &#x4E2D;&#x5305;&#x542B; s &#x5B57;&#x7B26;&#x4E32;&#x65CB;&#x8F6C;&#x7684;&#x6240;&#x6709;&#x60C5;&#x51B5;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x8981;&#x67E5;&#x770B; s + s &#x540E;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x5426;&#x5305;&#x542B; goal &#x5373;&#x53EF;&#x3002;</li>
+</ul>
+<hr>
 
 <script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
                                 
@@ -379,12 +406,12 @@
 
             
                 
-                <a href="../string/796.html" class="navigation navigation-prev " aria-label="Previous page: 796">
+                <a href="709.html" class="navigation navigation-prev " aria-label="Previous page: 709">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="stack.html" class="navigation navigation-next " aria-label="Next page: 队列">
+                <a href="../stack/stack.html" class="navigation navigation-next " aria-label="Next page: 棧">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -395,7 +422,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"棧","level":"2.3","depth":1,"next":{"title":"队列","level":"2.4","depth":1,"path":"stack/stack.md","ref":"stack/stack.md","articles":[]},"previous":{"title":"796","level":"2.2.3","depth":2,"path":"string/796.md","ref":"string/796.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","katex","anchors","splitter","github","expandable-chapters-small","hide-element","popup","code"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ONGOING-Z/Learn-Algorithm-and-DataStructure/"},"splitter":{},"popup":{},"code":{"copyButtons":true},"hide-element":{"element":[".gitbook-link"]},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"stack/stack.md","mtime":"2022-02-10T13:08:20.706Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-10T13:09:03.095Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"796","level":"2.2.3","depth":2,"next":{"title":"棧","level":"2.3","depth":1,"path":"stack/stack.md","ref":"stack/stack.md","articles":[]},"previous":{"title":"709","level":"2.2.2","depth":2,"path":"string/709.md","ref":"string/709.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","katex","anchors","splitter","github","expandable-chapters-small","hide-element","popup","code"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ONGOING-Z/Learn-Algorithm-and-DataStructure/"},"splitter":{},"popup":{},"code":{"copyButtons":true},"hide-element":{"element":[".gitbook-link"]},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"string/796.md","mtime":"2022-02-10T13:08:20.706Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-10T13:09:03.095Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

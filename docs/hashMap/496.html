@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>棧 · GitBook</title>
+        <title>496 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -77,10 +77,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="stack.html" />
+    <link rel="next" href="../tree/tree.html" />
     
     
-    <link rel="prev" href="../string/796.html" />
+    <link rel="prev" href="hashMap.html" />
     
 
     </head>
@@ -221,9 +221,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3" data-path="stack.html">
+        <li class="chapter " data-level="2.3" data-path="../stack/stack.html">
             
-                <a href="stack.html">
+                <a href="../stack/stack.html">
             
                     
                     棧
@@ -234,9 +234,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.4" data-path="stack.html">
+        <li class="chapter " data-level="2.4" data-path="../stack/stack.html">
             
-                <a href="stack.html">
+                <a href="../stack/stack.html">
             
                     
                     队列
@@ -247,9 +247,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="../hashMap/hashMap.html">
+        <li class="chapter " data-level="2.5" data-path="hashMap.html">
             
-                <a href="../hashMap/hashMap.html">
+                <a href="hashMap.html">
             
                     
                     hash
@@ -261,9 +261,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.5.1" data-path="../hashMap/496.html">
+        <li class="chapter active" data-level="2.5.1" data-path="496.html">
             
-                <a href="../hashMap/496.html">
+                <a href="496.html">
             
                     
                     496
@@ -335,7 +335,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >棧</a>
+        <a href=".." >496</a>
     </h1>
 </div>
 
@@ -350,7 +350,49 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="stack"><a name="stack" class="plugin-anchor" href="#stack"><i class="fa fa-link" aria-hidden="true"></i></a>Stack</h1>
+                                <h1 id="496md"><a name="496md" class="plugin-anchor" href="#496md"><i class="fa fa-link" aria-hidden="true"></i></a>496.md</h1>
+<p>type: hashMap
+difficulty: easy</p>
+<hr>
+<h2 id="problem-info"><a name="problem-info" class="plugin-anchor" href="#problem-info"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://leetcode-cn.com/problems/next-greater-element-i/" target="_blank">Problem Info</a></h2>
+<p>&#x4E24;&#x4E2A;&#x6570;&#x7EC4;num1, num2, &#x5176;&#x4E2D;num1&#x662F;num2&#x7684;&#x5B50;&#x96C6;&#xFF0C;&#x6C42;&#x5BF9;num1&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x6570;&#xFF0C;&#x5F97;&#x5230;&#x5BF9;&#x5E94;num2&#x540C;&#x7B49;&#x6570;&#x5B57;&#x53F3;&#x4FA7;&#x8F83;&#x8FD1;&#x7684;&#x5927;&#x503C;&#x3002;</p>
+<h2 id="answer---1"><a name="answer---1" class="plugin-anchor" href="#answer---1"><i class="fa fa-link" aria-hidden="true"></i></a>Answer - 1</h2>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] nextGreaterElement(<span class="hljs-keyword">int</span>[] nums1, <span class="hljs-keyword">int</span>[] nums2) {
+        Map&lt;Integer, Integer&gt; nums2Map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+        <span class="hljs-comment">// put {num: index} into map</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nums2.length; i++) {
+            <span class="hljs-keyword">if</span> (nums2Map.containsKey(nums2[i])) {
+                <span class="hljs-comment">// nothing to do</span>
+            } <span class="hljs-keyword">else</span> {
+                nums2Map.put(nums2[i], i);
+            }
+        }
+        <span class="hljs-keyword">int</span>[] res = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[nums1.length];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nums1.length; i++) {
+            <span class="hljs-keyword">int</span> start = nums2Map.get(nums1[i]) + <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">if</span> (start == nums2.length) {
+                res[i] = -<span class="hljs-number">1</span>;
+            }
+            <span class="hljs-keyword">int</span> has = -<span class="hljs-number">1</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = start; j &lt; nums2.length; j++) {
+                <span class="hljs-keyword">if</span> (nums1[i] &lt; nums2[j]) {
+                    has = nums2[j];
+                    <span class="hljs-keyword">break</span>;
+                } 
+            }
+            res[i] = has;
+        }
+        <span class="hljs-keyword">return</span> res;
+    }
+}
+</code></pre>
+<ul>
+<li>time: 2ms</li>
+<li>beat 98.54%</li>
+</ul>
+<h2 id="answer---2"><a name="answer---2" class="plugin-anchor" href="#answer---2"><i class="fa fa-link" aria-hidden="true"></i></a>Answer - 2</h2>
+<h2 id="attention"><a name="attention" class="plugin-anchor" href="#attention"><i class="fa fa-link" aria-hidden="true"></i></a>Attention</h2>
 
 <script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
                                 
@@ -379,12 +421,12 @@
 
             
                 
-                <a href="../string/796.html" class="navigation navigation-prev " aria-label="Previous page: 796">
+                <a href="hashMap.html" class="navigation navigation-prev " aria-label="Previous page: hash">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="stack.html" class="navigation navigation-next " aria-label="Next page: 队列">
+                <a href="../tree/tree.html" class="navigation navigation-next " aria-label="Next page: 树">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -395,7 +437,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"棧","level":"2.3","depth":1,"next":{"title":"队列","level":"2.4","depth":1,"path":"stack/stack.md","ref":"stack/stack.md","articles":[]},"previous":{"title":"796","level":"2.2.3","depth":2,"path":"string/796.md","ref":"string/796.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","katex","anchors","splitter","github","expandable-chapters-small","hide-element","popup","code"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ONGOING-Z/Learn-Algorithm-and-DataStructure/"},"splitter":{},"popup":{},"code":{"copyButtons":true},"hide-element":{"element":[".gitbook-link"]},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"stack/stack.md","mtime":"2022-02-10T13:08:20.706Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-10T13:09:03.095Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"496","level":"2.5.1","depth":2,"next":{"title":"树","level":"2.6","depth":1,"path":"tree/tree.md","ref":"tree/tree.md","articles":[]},"previous":{"title":"hash","level":"2.5","depth":1,"path":"hashMap/hashMap.md","ref":"hashMap/hashMap.md","articles":[{"title":"496","level":"2.5.1","depth":2,"path":"hashMap/496.md","ref":"hashMap/496.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","katex","anchors","splitter","github","expandable-chapters-small","hide-element","popup","code"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ONGOING-Z/Learn-Algorithm-and-DataStructure/"},"splitter":{},"popup":{},"code":{"copyButtons":true},"hide-element":{"element":[".gitbook-link"]},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"hashMap/496.md","mtime":"2022-02-10T13:08:20.706Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-10T13:09:03.095Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
