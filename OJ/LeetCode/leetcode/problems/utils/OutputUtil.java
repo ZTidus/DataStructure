@@ -12,13 +12,19 @@ public class OutputUtil {
      * @return
      */
     public static void printIntArray(int[] nums) {
-        String res = "[{0}]";
-        String temp = "";
+        String res = "";
         for (int i = 0; i < nums.length; i++) {
-            temp += nums[i];
-            temp += ONE_SPACE;
+            if (i == 0) res += "[";
+            res += nums[i];
+            if (i != nums.length - 1) {
+                res += ",";
+            }
+            res += ONE_SPACE;
+            if (i == nums.length - 1) {
+                res += "]";
+            }
         }
-        System.out.println(String.format(res, temp));
+        System.out.println(res);
     }
 
 }
