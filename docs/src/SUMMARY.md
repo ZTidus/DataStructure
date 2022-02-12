@@ -11,6 +11,7 @@
   * [67](string/67.md)
   * [709](string/709.md)
   * [796](string/796.md)
+  * [1614](string/1614.md)
 * [棧](stack/stack.md)
 * [队列](stack/stack.md)
 * [hash](hashMap/hashMap.md)
