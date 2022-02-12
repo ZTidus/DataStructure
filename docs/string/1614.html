@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>字符串 · GitBook</title>
+        <title>1614 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -77,10 +77,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="67.html" />
+    <link rel="next" href="../stack/stack.html" />
     
     
-    <link rel="prev" href="../array/26.html" />
+    <link rel="prev" href="796.html" />
     
 
     </head>
@@ -163,7 +163,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2" data-path="string.html">
+        <li class="chapter " data-level="2.2" data-path="string.html">
             
                 <a href="string.html">
             
@@ -216,7 +216,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.4" data-path="1614.html">
+        <li class="chapter active" data-level="2.2.4" data-path="1614.html">
             
                 <a href="1614.html">
             
@@ -348,7 +348,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >字符串</a>
+        <a href=".." >1614</a>
     </h1>
 </div>
 
@@ -363,7 +363,35 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="string"><a name="string" class="plugin-anchor" href="#string"><i class="fa fa-link" aria-hidden="true"></i></a>String</h1>
+                                <h1 id="1614"><a name="1614" class="plugin-anchor" href="#1614"><i class="fa fa-link" aria-hidden="true"></i></a>1614</h1>
+<p>type: string
+difficulty: easy</p>
+<hr>
+<h2 id="problem-info"><a name="problem-info" class="plugin-anchor" href="#problem-info"><i class="fa fa-link" aria-hidden="true"></i></a><a href="https://leetcode-cn.com/problems/maximum-nesting-depth-of-the-parentheses/" target="_blank">Problem Info</a></h2>
+<p>&#x7ED9;&#x5B9A;&#x4E00;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x7B97;&#x51FA;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x6700;&#x6DF1;&#x7684;&#x62EC;&#x53F7;&#x5C42;&#x6570;&#x3002;</p>
+<h2 id="answer---1"><a name="answer---1" class="plugin-anchor" href="#answer---1"><i class="fa fa-link" aria-hidden="true"></i></a>Answer - 1</h2>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxDepth</span><span class="hljs-params">(String s)</span> </span>{
+        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> max = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.length(); i++) {
+            <span class="hljs-keyword">if</span> (<span class="hljs-string">&apos;(&apos;</span> == s.charAt(i)) {
+                res++;
+                <span class="hljs-keyword">if</span> (max &lt; res) max = res;
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&apos;)&apos;</span> == s.charAt(i)) {
+                res--;
+            }
+        }
+        <span class="hljs-keyword">return</span> max;
+    }
+}
+</code></pre>
+<ul>
+<li>time: 0ms</li>
+<li>beat 100%</li>
+</ul>
+<h2 id="answer---2"><a name="answer---2" class="plugin-anchor" href="#answer---2"><i class="fa fa-link" aria-hidden="true"></i></a>Answer - 2</h2>
+<h2 id="attention"><a name="attention" class="plugin-anchor" href="#attention"><i class="fa fa-link" aria-hidden="true"></i></a>Attention</h2>
 
 <script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
                                 
@@ -392,12 +420,12 @@
 
             
                 
-                <a href="../array/26.html" class="navigation navigation-prev " aria-label="Previous page: 26">
+                <a href="796.html" class="navigation navigation-prev " aria-label="Previous page: 796">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="67.html" class="navigation navigation-next " aria-label="Next page: 67">
+                <a href="../stack/stack.html" class="navigation navigation-next " aria-label="Next page: 棧">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -408,7 +436,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"字符串","level":"2.2","depth":1,"next":{"title":"67","level":"2.2.1","depth":2,"path":"string/67.md","ref":"string/67.md","articles":[]},"previous":{"title":"26","level":"2.1.1","depth":2,"path":"array/26.md","ref":"array/26.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","katex","anchors","splitter","github","expandable-chapters-small","hide-element","popup","code"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ONGOING-Z/Learn-Algorithm-and-DataStructure/"},"splitter":{},"popup":{},"code":{"copyButtons":true},"hide-element":{"element":[".gitbook-link"]},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"string/string.md","mtime":"2022-02-12T15:12:40.430Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-12T15:13:31.150Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1614","level":"2.2.4","depth":2,"next":{"title":"棧","level":"2.3","depth":1,"path":"stack/stack.md","ref":"stack/stack.md","articles":[]},"previous":{"title":"796","level":"2.2.3","depth":2,"path":"string/796.md","ref":"string/796.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","katex","anchors","splitter","github","expandable-chapters-small","hide-element","popup","code"],"root":"src","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/ONGOING-Z/Learn-Algorithm-and-DataStructure/"},"splitter":{},"popup":{},"code":{"copyButtons":true},"hide-element":{"element":[".gitbook-link"]},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"string/1614.md","mtime":"2022-02-12T15:12:40.430Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-12T15:13:31.150Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
