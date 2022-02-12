@@ -13,11 +13,12 @@ fi
 echo "
 # "$md_name"
 type:
+
 difficulty:
 
 ---
 
-## Problem Info
+## [Problem Info][problem_link]
 
 ## Answer - 1
 
@@ -28,6 +29,7 @@ difficulty:
 
 ## Attention
 
+[problem_link]:
 " > $1.md
 
 echo "done."
