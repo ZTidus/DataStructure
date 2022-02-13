@@ -1,3 +1,6 @@
 *.swp
 docs/_book/
 docs/node_modules/
+*.iml
+.idea
+*.xml
