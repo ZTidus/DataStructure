@@ -7,6 +7,8 @@
 
 * [数组](array/array.md)
   * [26](array/26.md)
+  * [540](array/540.md)
+  * [1380](array/1380.md)
 * [字符串](string/string.md)
   * [67](string/67.md)
   * [709](string/709.md)
