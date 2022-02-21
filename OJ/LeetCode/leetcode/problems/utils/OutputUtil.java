@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.Arrays;
+
 /**
  * 辅助 debug
  */
@@ -12,19 +14,7 @@ public class OutputUtil {
      * @return
      */
     public static void printIntArray(int[] nums) {
-        String res = "";
-        for (int i = 0; i < nums.length; i++) {
-            if (i == 0) res += "[";
-            res += nums[i];
-            if (i != nums.length - 1) {
-                res += ",";
-            }
-            res += ONE_SPACE;
-            if (i == nums.length - 1) {
-                res += "]";
-            }
-        }
-        System.out.println(res);
+        System.out.println(Arrays.asList(nums));
     }
 
 }
