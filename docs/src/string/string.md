@@ -8,7 +8,20 @@
 
 2. 转换
 - char -> int
+```java
+char b = 'b';
+System.out.println(b - 'a'); 
+```
+
 - int -> char
+```java
+int a = 97;
+sout((char)a);
+```
+- 'a' + 1 如何变成 'b'
+```java
+(char)('a' + 1);
+```
  
 * string -> char[]: s.toCharArray()
 * char[] -> string: new String(char[] values)
@@ -37,6 +50,21 @@ for (int i = 0; i < str.length(); i++) {
 ```java
 StringBuffer sb = new StringBuffer();
 return sb.reverse().toString();
+```
+
+关于StringBuffer:
+1、添加进入 sb 中时 int 类型数字不用再转，会自动转。
+2、sb.charAt()
+3、sb.length()
+
+- 字符串排序
+1. 先将字符串->字符串数组
+2. Arrays.sort(数组)
+3. new String(数组)
+
+- 倒序输出字符串
+```java
+System.out.println(new StringBuffer(s).reverse());
 ```
 
 ### 常量识记   
