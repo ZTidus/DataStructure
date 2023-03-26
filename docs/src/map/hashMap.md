@@ -9,3 +9,13 @@ for (int i = 0; i < words1.length; i++) {
 ```
 - 找到map中频次最高和频次次高的
 - 多值排序
+
+
+- 遍历值：`map.values()`
+
+
+## Set
+
+- `boolean add()`
+集合中不存在，添加返回true;
+集合中存在，添加返回false.
