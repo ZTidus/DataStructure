@@ -2,6 +2,8 @@
 # offer_069
 type: array
 
+和852题相同。
+
 difficulty:
 
 ---
