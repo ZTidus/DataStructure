@@ -67,7 +67,7 @@ public:
         int lastNonZeroFoundAt = 0;
         for (int i = 0; i < nums.size(); i++)
         {
-            // 当前元素不为0,则将当前元素值赋值给最后的0元素位置
+            // 当前元素不为0,则将当前元素值赋值给lastNonZeroFoundAt坐标的元素
             if (nums[i] != 0)
                 nums[lastNonZeroFoundAt++] = nums[i];
         }
