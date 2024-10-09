@@ -6,9 +6,12 @@
 name=$1
 
 suffix=${name##*.}
+filename=$(echo $name | cut -d '.' -f1)
+
 if [ $suffix -eq "md" ]; then
   # do nothing
-  echo ""
+  new_name=$filename".md"
+
 else
   new_name=$name".md"
 fi
@@ -46,6 +49,12 @@ difficulty:
 - big O:
 
 ## Answer - 2
+
+- java
+
+- time: ms
+- beat %
+- big O:
 
 [problem_link]:
 " > "$new_name"
