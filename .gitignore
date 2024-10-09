@@ -4,3 +4,6 @@ docs/node_modules/
 *.iml
 .idea
 *.xml
+*.class
+test/
+out/
