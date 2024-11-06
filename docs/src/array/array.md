@@ -33,3 +33,7 @@ public class Demo {
 Collections.reverse(list);
 ```
 注意这个reverse没有返回值。
+
+- List -> array
+
+- Arrays.sort()默认正向排序，如何反向排序呢，对于一维数组来说。

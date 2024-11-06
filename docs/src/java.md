@@ -8,6 +8,10 @@ int[] a = {1, 2, 3};
 int[] b = a.clone();
 ```
 
+- list to array
+```java
+list.toArray(new String[0]);
+```
 - set -> list
 ```java
 List<Integer> res = new ArrayList<>(set);
@@ -39,6 +43,12 @@ public boolean isVowel(char ch) {
     return "aeiouAEIOU".indexOf(ch) >= 0;
 }
 ```
+- subString
+- 将字符串转为字符数组
+```java
+String str = "hello";
+char[] chars = str.toCharArray();
+```
 
 ### StringBuilder
 - append(String s)
@@ -53,3 +63,17 @@ public boolean isVowel(char ch) {
 ## Map
 ### 值得注意的方法
 - getOrDefault()
+
+
+ThreadLocal
+- 提供线程内的局部变量
+
+
+- 线程并发：多线程并发的场景下，单线程是用不到这个的
+- 传递数据：在同一线程内，不同组件间传递公共变量
+- 线程隔离：每个线程内的变量相互独立，不会互相影响。
+
+![](img/img.png)
+
+## Constant
+- Integer.MAX_VALUE

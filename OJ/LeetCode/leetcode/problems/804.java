@@ -1,14 +1,19 @@
-class Solution {
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+class UniqueMorseRepresentations {
     public int uniqueMorseRepresentations(String[] words) {
         Set<String> s = new HashSet<>();
-        String[] morse = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
-        
+        String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
+
         Map mp = new HashMap<Character, String>();
         for (int i = 0; i < 26; i++) {
-            char x = (char)(i + 'a');
+            char x = (char) (i + 'a');
             mp.put(x, morse[i]);
         }
-        
+
         for (String str : words) {
             String temp = "";
             char[] charArray = str.toCharArray();
